@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "861963348479",
+    "project_id": "barcode-cvs-review",
+    "storage_bucket": "barcode-cvs-review.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861963348479:android:16f5027c82093408715fca",
+        "android_client_info": {
+          "package_name": "com.barcode.cvs_review"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "861963348479-mb7puitubiocnm3g7md4tgnf755hnv69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeBvSXTTrTCftgI2N9gEegqadWWNidwy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "861963348479-mb7puitubiocnm3g7md4tgnf755hnv69.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
