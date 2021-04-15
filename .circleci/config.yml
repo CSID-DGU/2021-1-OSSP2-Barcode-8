@@ -1,0 +1,21 @@
+version: 2.1
+
+orbs:
+  android: circleci/android@0.2.1
+
+dependencies:
+  pre:
+  - echo y | android update sdk --no-ui --all --filter "android-30"
+  - echo y | android update sdk --no-ui --all --filter "build-tools-30.0.3"
+  - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
+
+
+jobs:
+  build:
+    executor: android/android
+
+    steps:
+      - checkout
+      - run:
+          command: 
+            cd CVS_Review;chmod +x gradlew;./gradlew test
