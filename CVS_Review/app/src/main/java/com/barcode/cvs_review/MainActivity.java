@@ -1,13 +1,13 @@
 package com.barcode.cvs_review;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -21,22 +21,24 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
 
-    private SignInButton btn_google; //구글 로그인 버튼
-    private FirebaseAuth auth; //파이어베이스 인증 객체
-    private GoogleApiClient googleApiClient; // 구글 API 클라이언트 객체
-    private static final int REQ_SIGN_GOOGLE=100;//구글 로그인 결과 코드
+    private SignInButton btn_google;  // 구글 로그인 버튼
+    private FirebaseAuth auth;  //파이어 베이스 인증 객체
+    private GoogleApiClient googleApiClient; //구글 API 클라이언트 객체
+    private static final int REQ_SIGN_GOOGLE= 100; //구글 로그인 결과 코드
+
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {  //앱이 실행될때 수행되는 곳
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
@@ -45,10 +47,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions)
                 .build();
+
         auth= FirebaseAuth.getInstance();  //파이어 베이스 인증 객체 초기화.
 
         btn_google = findViewById(R.id.btn_google);
-
         btn_google.setOnClickListener(new View.OnClickListener() { //구글 로그인 버튼을 클릭했을 때 이곳을 수행
             @Override
             public void onClick(View v) {
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { //구글 로그인 인증을 요청했을 때 결과값을 되돌리 받는 곳.
@@ -92,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     }
                 });
     }
-
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
