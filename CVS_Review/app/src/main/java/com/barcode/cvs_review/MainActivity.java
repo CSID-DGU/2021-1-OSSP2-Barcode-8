@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         btn_google = findViewById(R.id.btn_google);
         btn_google.setOnClickListener(new View.OnClickListener() { //구글 로그인 버튼을 클릭했을 때 이곳을 수행
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {//버튼을 클릭했을 경우
                 Intent intent  =  Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(intent, REQ_SIGN_GOOGLE);
 
