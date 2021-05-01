@@ -16,7 +16,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -37,7 +40,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.2.1'//파이어베이스 코어
     implementation 'com.google.firebase:firebase-auth:19.1.0' //파이어베이스 인증
     implementation 'com.firebaseui:firebase-ui-auth:4.2.1' //파이어베이스 인증2
-    implementation 'com.github.bumptech.glide:glide:4.9.0' //글라이드 이미지 로딩 구글 프로필 사진등 이미지 관련
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'//글라이드 이미지 로딩 구글 프로필 사진등 이미지 관련
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0' //글라이드 이미지 로딩2
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.+'
