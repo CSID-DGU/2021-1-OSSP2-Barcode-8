@@ -26,6 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/maplestorybold"
+                android:layout_marginStart="10dp"
                 android:text="#계정정보"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -94,6 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/maplestorybold"
+                android:layout_marginStart="10dp"
                 android:text="#상품목록"
                 android:textSize="20sp" />
         </LinearLayout>
