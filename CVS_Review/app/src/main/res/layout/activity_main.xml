@@ -8,12 +8,6 @@
     android:backgroundTint="#D9F1F1"
     tools:context=".MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:id="@+id/app_toolbar"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -236,9 +230,9 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        app:fabCustomSize="85dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:fabCustomSize="75dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="25dp"
         app:backgroundTint="#8CC1D3"
