@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.CVS_Review" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.CVS_Review" parent="Theme.AppCompat.Light">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -13,5 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:elevation">4dp</item>
+    </style>
+    <style name="ActionBarTextColor" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#000000</item>
     </style>
 </resources>
