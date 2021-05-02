@@ -10,11 +10,12 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="25dp"
-        app:backgroundTint="#B6E3E9"
+        app:backgroundTint="#8CC1D3"
+        app:fabCustomSize="85dp"
         app:srcCompat="@mipmap/ic_barcode_foreground" />
 
     <TextView

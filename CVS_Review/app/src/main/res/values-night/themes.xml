@@ -14,4 +14,11 @@
         <!-- Customize your theme here. -->
         <item name="android:elevation">4dp</item>
     </style>
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
+        <item name="android:textSize">30dp</item>
+        <item name="android:textColor">@color/colorActionBarText</item>
+    </style>
+    <style name="actionOverflowButtonStyle" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/black</item>
+    </style>
 </resources>

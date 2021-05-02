@@ -10,4 +10,5 @@
     <color name="colorPrimary">#D9F1F1</color>
     <color name="colorPrimaryDark">#B6E3E9</color>
     <color name="colorAccent">#8CC1D3</color>
+    <color name="colorActionBarText">#000000</color>
 </resources>
