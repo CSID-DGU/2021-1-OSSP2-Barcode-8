@@ -32,6 +32,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onCreate(Bundle savedInstanceState) {  //앱이 실행될때 수행되는 곳
         super.onCreate(savedInstanceState);
+        // 만약 로그인이 되어 있는 상태라면 자동 로그인
+        if(CustomPreferenceManager.getBoolean(getApplicationContext(),"userLogged")){
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
         setContentView(R.layout.activity_login);
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -81,8 +87,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         if(task.isSuccessful()){ //로그인이 성공했으면...
                             Toast.makeText(LoginActivity.this, "로그인 성공",Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("nickName",account.getDisplayName());
-                            intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl()));  //사진 url을 특정 자료형을 String 형태로 변환시키는 방법
+                            // intent.putExtra("nickName",account.getDisplayName());
+                            // intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl()));  //사진 url을 특정 자료형을 String 형태로 변환시키는 방법
+                            CustomPreferenceManager.setString(getApplicationContext(),"nickname", account.getDisplayName());    // CustomPreference
+                            CustomPreferenceManager.setString(getApplicationContext(), "photoUrl", String.valueOf(account.getPhotoUrl()));
+                            CustomPreferenceManager.setBoolean(getApplicationContext(), "userLogged", true);
                             startActivity(intent);
                         }else{//로그인이 실패했으면...
                             Toast.makeText(LoginActivity.this,"로그인 실패",Toast.LENGTH_SHORT).show();
