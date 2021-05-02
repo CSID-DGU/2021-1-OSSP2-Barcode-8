@@ -42,7 +42,7 @@ public class SettingActivity extends AppCompatActivity {
     class FABClickListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            Intent barcode_intent = new Intent(getApplicationContext(),BarcodeActivity.class);
+            Intent barcode_intent = new Intent(getApplicationContext(), BarcodeScanActivity.class);
             startActivityForResult(barcode_intent, 101);
         }
     }

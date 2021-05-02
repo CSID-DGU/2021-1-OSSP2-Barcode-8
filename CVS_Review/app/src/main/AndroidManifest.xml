@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CVS_Review">
-        <activity android:name=".BarcodeActivity"></activity>
+        <activity android:name=".BarcodeScanActivity"></activity>
         <activity android:name=".SettingActivity" />
         <activity android:name=".LoginActivity"
             android:noHistory="true">
