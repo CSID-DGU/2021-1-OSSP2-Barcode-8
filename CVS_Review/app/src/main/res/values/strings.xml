@@ -2,4 +2,6 @@
     <string name="app_name">CVS_Review</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_home">Home</string>
+    <string name="action_settings">Settings</string>
 </resources>

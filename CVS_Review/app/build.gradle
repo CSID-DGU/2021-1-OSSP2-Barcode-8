@@ -44,6 +44,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'//글라이드 이미지 로딩 구글 프로필 사진등 이미지 관련
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0' //글라이드 이미지 로딩2
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

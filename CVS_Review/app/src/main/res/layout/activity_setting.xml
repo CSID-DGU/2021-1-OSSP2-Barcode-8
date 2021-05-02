@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#D9F1F1"
     android:backgroundTint="#D9F1F1"
-    tools:context=".MainActivity">
+    tools:context=".SettingActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -16,4 +16,11 @@
         android:layout_margin="25dp"
         app:backgroundTint="#B6E3E9"
         app:srcCompat="@mipmap/ic_barcode_foreground" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Setting" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
