@@ -23,13 +23,19 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.kakao.auth.ISessionCallback;
+import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.MeV2ResponseCallback;
+import com.kakao.usermgmt.response.MeV2Response;
+import com.kakao.util.exception.KakaoException;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
     private SignInButton btn_google;  // 구글 로그인 버튼
     private FirebaseAuth auth;  //파이어 베이스 인증 객체
     private GoogleApiClient googleApiClient; //구글 API 클라이언트 객체
     private static final int REQ_SIGN_GOOGLE= 100; //구글 로그인 결과 코드
-
+    private ISessionCallback msessionCallback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {  //앱이 실행될때 수행되는 곳
         super.onCreate(savedInstanceState);
@@ -40,7 +46,39 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             startActivity(intent);
         }
         setContentView(R.layout.activity_login);
+        msessionCallback = new ISessionCallback() {//카카오톡 부분입니다.
+            @Override
+            public void onSessionOpened() {
+                //로그인 요청을 한다.
+                UserManagement.getInstance().me(new MeV2ResponseCallback() {
+                    @Override
+                    public void onFailure(ErrorResult errorResult) {
+                        //로그인인 실패를 한 상황
+                        Toast.makeText(LoginActivity.this, "로그인이 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
 
+                    @Override
+                    public void onSessionClosed(ErrorResult errorResult) {
+                        //세션이 닫힘..
+                        Toast.makeText(LoginActivity.this, "세션이 닫혔습니다.", Toast.LENGTH_SHORT).show();
+                       }
+
+                    @Override
+                    public void onSuccess(MeV2Response result) {
+                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                        intent.putExtra("name",result.getKakaoAccount().getProfile().getNickname());
+                        intent.putExtra("profileImg", result.getKakaoAccount().getProfile().getProfileImageUrl());
+                        intent.putExtra("email",result.getKakaoAccount().getEmail());
+                        Toast.makeText(LoginActivity.this, "환영합니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onSessionOpenFailed(KakaoException exception) {
+
+            }
+        };
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()

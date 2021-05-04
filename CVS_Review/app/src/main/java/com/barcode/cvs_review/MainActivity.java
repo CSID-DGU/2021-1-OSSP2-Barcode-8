@@ -3,14 +3,8 @@ package com.barcode.cvs_review;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +14,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -42,8 +34,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity{
 
     CardView profileInfoCardView;
-    ImageView profileImageView;
-    TextView nickname;
+    ImageView profileImageView;// google
+    TextView nickname; //kakao
     
 
     @Override
@@ -53,7 +45,7 @@ public class MainActivity extends AppCompatActivity{
 
         profileInfoCardView = findViewById(R.id.accountCardView);
         // 카드뷰 프로필 사진 지정
-        profileImageView = findViewById(R.id.imageView);
+        profileImageView = findViewById(R.id.tv_profile);
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
         Glide.with(MainActivity.this)
