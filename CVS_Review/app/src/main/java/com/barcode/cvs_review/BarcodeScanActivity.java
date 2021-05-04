@@ -67,7 +67,7 @@ public class BarcodeScanActivity extends AppCompatActivity {
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .setRequestedFps(29.8f)
-                .setRequestedPreviewSize(1080,1920)
+                .setRequestedPreviewSize(500,500)
                 .setAutoFocusEnabled(true)
                 .build();
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -97,15 +97,13 @@ public class BarcodeScanActivity extends AppCompatActivity {
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
             @Override
             public void release() {
-
+                cameraSource.stop();
             }
 
             @Override
             public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodeSparseArray = detections.getDetectedItems();
                 if(barcodeSparseArray.size() != 0){
-                    //cameraSource.release();
-                    //barcodeDetector.release();
                     String barcodeNumber = barcodeSparseArray.valueAt(0).displayValue;
                     Handler toastHandler = new Handler(Looper.getMainLooper());
                     toastHandler.postDelayed(new Runnable() {
@@ -114,6 +112,7 @@ public class BarcodeScanActivity extends AppCompatActivity {
                             Intent barcodeInfoIntent = new Intent(getApplicationContext(), ProductSpecActivity.class);
                             barcodeInfoIntent.putExtra("barcode", barcodeNumber);
                             startActivity(barcodeInfoIntent);
+                            barcodeDetector.release();
                             finish();
                         }
                     },0);
