@@ -34,17 +34,17 @@ android {
 
 dependencies {
     implementation 'gun0912.ted:tedpermission:2.2.3'
-    implementation 'com.google.mlkit:barcode-scanning:16.1.1'
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
     implementation platform('com.google.firebase:firebase-bom:27.0.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0' //파이어베이스 앱 분석
-    implementation 'com.google.firebase:firebase-core:17.2.1'//파이어베이스 코어
-    implementation 'com.google.firebase:firebase-auth:19.1.0' //파이어베이스 인증
-    implementation 'com.firebaseui:firebase-ui-auth:4.2.1' //파이어베이스 인증2
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.google.firebase:firebase-core:18.0.3'//파이어베이스 코어
+    implementation 'com.google.firebase:firebase-auth:20.0.4' //파이어베이스 인증
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0' //파이어베이스 인증2
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'//글라이드 이미지 로딩 구글 프로필 사진등 이미지 관련
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0' //글라이드 이미지 로딩2
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0' //글라이드 이미지 로딩2
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
