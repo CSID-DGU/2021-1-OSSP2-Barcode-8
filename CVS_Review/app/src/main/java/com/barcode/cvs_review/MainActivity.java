@@ -1,5 +1,6 @@
 package com.barcode.cvs_review;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -33,6 +34,10 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -104,8 +109,26 @@ public class MainActivity extends AppCompatActivity{
     class FABClickListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            Intent barcode_intent = new Intent(getApplicationContext(), BarcodeScanActivity.class);
-            startActivityForResult(barcode_intent, 101);
+            // 어플리케이션 카메라 권한 부여
+            PermissionListener permissionListener = new PermissionListener() {
+                @Override
+                public void onPermissionGranted() {
+                    Toast.makeText(getApplicationContext(), "카메라 권한 승인", Toast.LENGTH_SHORT).show();
+                    Intent barcode_intent = new Intent(getApplicationContext(), BarcodeScanActivity.class);
+                    startActivityForResult(barcode_intent, 101);
+                }
+
+                @Override
+                public void onPermissionDenied(List<String> deniedPermissions) {
+                    Toast.makeText(getApplicationContext(), "카메라 권한 거부", Toast.LENGTH_SHORT).show();
+                }
+            };
+            TedPermission.with(getApplicationContext())
+                    .setPermissionListener(permissionListener)
+                    .setRationaleMessage("바코드를 스캔하기 위해 카메라 접근 권한이 필요합니다")
+                    .setDeniedMessage("카메라 접근 권한이 거부되었습니다\n[설정] > [권한]에서 권한을 다시 허용하실 수 있습니다")
+                    .setPermissions(Manifest.permission.CAMERA)
+                    .check();
         }
     }
 
