@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.barcode.cvs_review">
-<uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.hardware.camera2.autofocus"/>
+    <uses-feature android:name="android.hardware.camera2"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CVS_Review">
-        <activity android:name=".BarcodeScanActivity"></activity>
+        <activity android:name=".BarcodeScanActivity"/>
+        <activity android:name=".ProductSpecActivity"/>
         <activity android:name=".SettingActivity" />
         <activity android:name=".LoginActivity"
             android:noHistory="true">
