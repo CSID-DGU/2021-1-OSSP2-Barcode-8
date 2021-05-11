@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" >
 
     </com.google.android.gms.common.SignInButton>
-
+    //카카오 로그인 부분
     <com.kakao.usermgmt.LoginButton
         android:id="@+id/btn_Kakao_login"
         android:layout_width="match_parent"
