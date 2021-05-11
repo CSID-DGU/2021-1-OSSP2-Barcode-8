@@ -29,7 +29,7 @@
     <remote-repository>
       <option name="id" value="maven" />
       <option name="name" value="maven" />
-      <option name="url" value="http://devrepo.kakao.com:8088/nexus/content/groups/public" />
+      <option name="url" value="http://devrepo.kakao.com:8088/nexus/content/groups/public/" />
     </remote-repository>
   </component>
 </project>

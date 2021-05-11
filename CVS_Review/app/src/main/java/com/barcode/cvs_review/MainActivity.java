@@ -34,8 +34,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity{
 
     CardView profileInfoCardView;
-    ImageView profileImageView;// google
-    TextView nickname; //kakao
+    ImageView profileImageView;
+    TextView nickname;
     
 
     @Override
