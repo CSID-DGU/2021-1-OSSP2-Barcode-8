@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
             }
         });
+
         mSessionCallback = new ISessionCallback() {
             @Override
             public void onSessionOpened() {
@@ -96,11 +97,18 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     @Override
                     public void onSuccess(MeV2Response result) {
                         //로그인 성공
-                        Intent intent = new Intent(LoginActivity.this, SubActivity.class);
-                        intent.putExtra("kakaoname",result.getKakaoAccount().getProfile().getNickname());
-                        intent.putExtra("profileImg",result.getKakaoAccount().getProfile().getProfileImageUrl());
-                        intent.putExtra("email",result.getKakaoAccount().getEmail());
-                        Toast.makeText(LoginActivity.this, "로그인이 성공했습니다..", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        // intent.putExtra("kakaoname",result.getKakaoAccount().getProfile().getNickname());
+                        // intent.putExtra("profileImg",result.getKakaoAccount().getProfile().getProfileImageUrl());
+                        // intent.putExtra("email",result.getKakaoAccount().getEmail());
+                        Toast.makeText(LoginActivity.this, "로그인이 성공했습니다", Toast.LENGTH_SHORT).show();
+                        CustomPreferenceManager.setString(getApplicationContext(),"nickname", result.getKakaoAccount().getProfile().getNickname());    // CustomPreference
+                        CustomPreferenceManager.setString(getApplicationContext(), "photoUrl", result.getKakaoAccount().getProfile().getProfileImageUrl());
+                        CustomPreferenceManager.setBoolean(getApplicationContext(), "userLogged", true);
+                        CustomPreferenceManager.setBoolean(getApplicationContext(), "kakao", true);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
                     }
                 });
             }
