@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         // 만약 로그인이 되어 있는 상태라면 자동 로그인
         if(CustomPreferenceManager.getBoolean(getApplicationContext(),"userLogged")){
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
         setContentView(R.layout.activity_login);
@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         // intent.putExtra("kakaoname",result.getKakaoAccount().getProfile().getNickname());
                         // intent.putExtra("profileImg",result.getKakaoAccount().getProfile().getProfileImageUrl());
                         // intent.putExtra("email",result.getKakaoAccount().getEmail());
-                        Toast.makeText(LoginActivity.this, "로그인이 성공했습니다", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                         CustomPreferenceManager.setString(getApplicationContext(),"nickname", result.getKakaoAccount().getProfile().getNickname());    // CustomPreference
                         CustomPreferenceManager.setString(getApplicationContext(), "photoUrl", result.getKakaoAccount().getProfile().getProfileImageUrl());
                         CustomPreferenceManager.setBoolean(getApplicationContext(), "userLogged", true);
@@ -163,7 +163,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){ //로그인이 성공했으면...
-                            Toast.makeText(LoginActivity.this, "로그인 성공",Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(LoginActivity.this, "로그인 성공",Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             // intent.putExtra("nickName",account.getDisplayName());
                             // intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl()));  //사진 url을 특정 자료형을 String 형태로 변환시키는 방법
