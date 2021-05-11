@@ -48,11 +48,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(Bundle savedInstanceState) {  //앱이 실행될때 수행되는 곳
         super.onCreate(savedInstanceState);
         // 만약 로그인이 되어 있는 상태라면 자동 로그인
-        /*if(CustomPreferenceManager.getBoolean(getApplicationContext(),"userLogged")){
+        if(CustomPreferenceManager.getBoolean(getApplicationContext(),"userLogged")){
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-        }*/
+        }
         setContentView(R.layout.activity_login);
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
