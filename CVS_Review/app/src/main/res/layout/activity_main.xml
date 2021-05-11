@@ -254,6 +254,10 @@
                             android:id="@+id/etcImageView"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
                             android:contentDescription="etc Profile Picture"
                             android:src="@drawable/shopping_cart" />
 
