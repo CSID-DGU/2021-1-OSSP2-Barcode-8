@@ -100,131 +100,185 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/sevenElevenCardView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            app:cardUseCompatPadding="true">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                android:orientation="vertical" >
 
-                <ImageView
-                    android:id="@+id/sevenElevenImageView"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:contentDescription="711 Profile Picture"
-                    android:src="@drawable/ic_711" />
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/sevenElevenCardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:id="@+id/sevenElevenTextView"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/maplestorybold"
-                        android:text="세븐일레븐"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:layout_margin="10dp">
 
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:id="@+id/sevenElevenImageView"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:contentDescription="711 Profile Picture"
+                            android:src="@drawable/ic_711" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cuCardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            app:cardUseCompatPadding="true">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                            <TextView
+                                android:id="@+id/sevenElevenTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/maplestorybold"
+                                android:text="세븐일레븐"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
 
-                <ImageView
-                    android:id="@+id/cuImageView"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:contentDescription="CU Profile Picture"
-                    android:src="@drawable/ic_cu" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cuCardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:id="@+id/cuTextView"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/maplestorybold"
-                        android:text="CU"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:layout_margin="10dp">
 
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:id="@+id/cuImageView"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:contentDescription="CU Profile Picture"
+                            android:src="@drawable/ic_cu" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/gs25CardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            app:cardUseCompatPadding="true">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                            <TextView
+                                android:id="@+id/cuTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/maplestorybold"
+                                android:text="CU"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
 
-                <ImageView
-                    android:id="@+id/gs25imageView"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:contentDescription="gs25 Profile Picture"
-                    android:src="@drawable/ic_gs25" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/gs25CardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:id="@+id/gs25textView"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/maplestorybold"
-                        android:text="GS25"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:layout_margin="10dp">
 
-                </LinearLayout>
+                        <ImageView
+                            android:id="@+id/gs25imageView"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:contentDescription="gs25 Profile Picture"
+                            android:src="@drawable/ic_gs25" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/gs25textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/maplestorybold"
+                                android:text="GS25"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/etcCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp">
+
+                        <ImageView
+                            android:id="@+id/etcImageView"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:contentDescription="etc Profile Picture"
+                            android:src="@drawable/shopping_cart" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/etcTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/maplestorybold"
+                                android:text="공통 상품"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </ScrollView>
 
     </LinearLayout>
 
