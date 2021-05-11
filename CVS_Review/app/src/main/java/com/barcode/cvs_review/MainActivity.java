@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,11 +29,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
+import com.kakao.auth.ISessionCallback;
+import com.kakao.sdk.user.UserApiClient;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
+import com.kakao.util.exception.KakaoException;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
 
+    private ISessionCallback mSessionCallback;
     CardView profileInfoCardView;
     ImageView profileImageView;
     TextView nickname;
@@ -132,13 +139,25 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Logout 다이얼로그 Yes 누른 경우
-                CustomPreferenceManager.clear(getApplicationContext()); // preference manager 값 다 정리
+                if(CustomPreferenceManager.getBoolean(getApplicationContext(), "kakao")) {
+                    // 카카오 로그인이라면
+                    UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+                        @Override
+                        public void onCompleteLogout() {
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
                 AuthUI.getInstance().signOut(MainActivity.this).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        CustomPreferenceManager.clear(getApplicationContext()); // preference manager 값 다 정리
                         Toast.makeText(getApplicationContext(), "로그아웃 성공", Toast.LENGTH_SHORT).show();  // toast로 알림
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);   // 다시 login activity로 보내고
-                        startActivity(intent); 
+                        startActivity(intent);
                         finish();   // Mainactivity 종료
                     }
                 });
