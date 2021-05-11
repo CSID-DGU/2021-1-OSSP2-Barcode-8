@@ -16,7 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CVS_Review"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SubActivity"></activity>
         <activity android:name=".BarcodeScanActivity" />
         <activity android:name=".ProductSpecActivity" />
         <activity android:name=".SettingActivity" />
