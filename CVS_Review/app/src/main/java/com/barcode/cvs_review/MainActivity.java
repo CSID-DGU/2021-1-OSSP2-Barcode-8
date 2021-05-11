@@ -39,8 +39,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
 
-    private ISessionCallback mSessionCallback;
     CardView profileInfoCardView;
+    CardView sevenElevenListCardView;
+    CardView cuListCardView;
+    CardView gs25CardView;
+    CardView etcCardView;
     ImageView profileImageView;
     TextView nickname;
     
@@ -51,6 +54,11 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         profileInfoCardView = findViewById(R.id.accountCardView);
+        sevenElevenListCardView = findViewById(R.id.sevenElevenCardView);
+        cuListCardView = findViewById(R.id.cuCardView);
+        gs25CardView = findViewById(R.id.gs25CardView);
+        etcCardView = findViewById(R.id.etcCardView);
+
         // 카드뷰 프로필 사진 지정
         profileImageView = findViewById(R.id.tv_profile);
         RequestOptions requestOptions = new RequestOptions();
@@ -72,7 +80,43 @@ public class MainActivity extends AppCompatActivity{
                 showLogoutDialog();
             }
         });
-        
+
+        sevenElevenListCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
+                intent.putExtra("selected", 0);
+                startActivity(intent);
+            }
+        });
+
+        cuListCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
+                intent.putExtra("selected", 1);
+                startActivity(intent);
+            }
+        });
+
+        gs25CardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
+                intent.putExtra("selected", 2);
+                startActivity(intent);
+            }
+        });
+
+        etcCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
+                intent.putExtra("selected", 3);
+                startActivity(intent);
+            }
+        });
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new FABClickListener());
     }

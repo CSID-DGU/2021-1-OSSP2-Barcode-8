@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#D9F1F1"
+    android:backgroundTint="#D9F1F1">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:fabCustomSize="75dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="25dp"
+        app:backgroundTint="#8CC1D3"
+        app:srcCompat="@mipmap/ic_barcode_foreground" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
