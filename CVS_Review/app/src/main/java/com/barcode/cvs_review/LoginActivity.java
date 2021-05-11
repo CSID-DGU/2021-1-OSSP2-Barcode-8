@@ -37,6 +37,7 @@ import com.kakao.util.exception.KakaoException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
     private SignInButton btn_google;  // 구글 로그인 버튼
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             startActivity(intent);
         }
         setContentView(R.layout.activity_login);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -104,6 +106,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         // Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                         CustomPreferenceManager.setString(getApplicationContext(),"nickname", result.getKakaoAccount().getProfile().getNickname());    // CustomPreference
                         CustomPreferenceManager.setString(getApplicationContext(), "photoUrl", result.getKakaoAccount().getProfile().getProfileImageUrl());
+                        CustomPreferenceManager.setString(getApplicationContext(), "userEmail", result.getKakaoAccount().getEmail());
                         CustomPreferenceManager.setBoolean(getApplicationContext(), "userLogged", true);
                         CustomPreferenceManager.setBoolean(getApplicationContext(), "kakao", true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -169,6 +172,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             // intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl()));  //사진 url을 특정 자료형을 String 형태로 변환시키는 방법
                             CustomPreferenceManager.setString(getApplicationContext(),"nickname", account.getDisplayName());    // CustomPreference
                             CustomPreferenceManager.setString(getApplicationContext(), "photoUrl", String.valueOf(account.getPhotoUrl()));
+                            CustomPreferenceManager.setString(getApplicationContext(), "userEmail", String.valueOf(account.getEmail()));
                             CustomPreferenceManager.setBoolean(getApplicationContext(), "userLogged", true);
                             startActivity(intent);
                         }else{//로그인이 실패했으면...
