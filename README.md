@@ -2,7 +2,7 @@
 
 ## 편의점 PB 상품 후기 공유 안드로이드 어플리케이션
 
-![circleci](https://img.shields.io/circleci/build/github/CSID-DGU/2021-1-OSSP2-Barcode-8)![last_commit](https://img.shields.io/github/last-commit/CSID-DGU/2021-1-OSSP2-Barcode-8)![lang](https://img.shields.io/github/languages/top/CSID-DGU/2021-1-OSSP2-Barcode-8)![issues](https://img.shields.io/github/issues/CSID-DGU/2021-1-OSSP2-Barcode-8) 
+![circleci](https://img.shields.io/circleci/build/github/CSID-DGU/2021-1-OSSP2-Barcode-8) ![last_commit](https://img.shields.io/github/last-commit/CSID-DGU/2021-1-OSSP2-Barcode-8) ![lang](https://img.shields.io/github/languages/top/CSID-DGU/2021-1-OSSP2-Barcode-8) ![issues](https://img.shields.io/github/issues/CSID-DGU/2021-1-OSSP2-Barcode-8)
 
 ### 개요
 
