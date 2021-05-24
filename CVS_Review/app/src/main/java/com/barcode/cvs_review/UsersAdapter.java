@@ -68,6 +68,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(viewholder.itemView.getContext(), ProductSpecActivity.class);
+                intent.putExtra("CVS_NAME", mList.get(position).getCVS_NAME());
+                intent.putExtra("PRODUCT_NAME", mList.get(position).getPRODUCT_NAME());
+                intent.putExtra("PRODUCT_IMAGE", mList.get(position).getPRODUCT_IMAGE_URL());
                 ContextCompat.startActivity(viewholder.itemView.getContext(), intent, null);
             }
         });
