@@ -262,7 +262,6 @@ public class ProductListActivity extends AppCompatActivity {
 
                 Database database = new Database();
 
-
                 database.setBARCODE(BARCODE);
                 database.setCVS_NAME(CVS_NAME);
                 database.setPRODUCT_NAME(PRODUCT_NAME);

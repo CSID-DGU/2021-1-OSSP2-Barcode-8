@@ -2,13 +2,19 @@ package com.barcode.cvs_review;
 
 import android.app.Activity;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.barcode.cvs_review.activity.MainActivity;
+import com.barcode.cvs_review.activity.ProductListActivity;
+import com.barcode.cvs_review.activity.ProductSpecActivity;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -57,6 +63,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
         viewholder.CVS_NAME.setText(mList.get(position).getCVS_NAME());
         viewholder.PRODUCT_NAME.setText(mList.get(position).getPRODUCT_NAME());
         Glide.with(context).load(mList.get(position).getPRODUCT_IMAGE_URL()).into(viewholder.PRODUCT_IMAGE);
+
+        viewholder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(viewholder.itemView.getContext(), ProductSpecActivity.class);
+                ContextCompat.startActivity(viewholder.itemView.getContext(), intent, null);
+            }
+        });
     }
 
     @Override
