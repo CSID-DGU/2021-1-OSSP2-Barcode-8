@@ -24,20 +24,24 @@
                 android:id="@+id/imageView_product_image"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <TextView
                 android:id="@+id/textView_list_CVS_NAME"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/maplestorylight"/>
 
             <TextView
                 android:id="@+id/textView_list_PRODUCT_NAME"
-                android:layout_width="wrap_content"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/maplestorylight"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
