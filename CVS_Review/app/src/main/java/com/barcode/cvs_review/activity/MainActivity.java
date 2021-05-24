@@ -1,11 +1,10 @@
-package com.barcode.cvs_review;
+package com.barcode.cvs_review.activity;
 
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +18,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.barcode.cvs_review.CustomPreferenceManager;
+import com.barcode.cvs_review.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -29,11 +30,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-import com.kakao.auth.ISessionCallback;
-import com.kakao.sdk.user.UserApiClient;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
-import com.kakao.util.exception.KakaoException;
 
 import java.util.List;
 
@@ -42,8 +40,8 @@ public class MainActivity extends AppCompatActivity{
     CardView profileInfoCardView;
     CardView sevenElevenListCardView;
     CardView cuListCardView;
-    CardView gs25CardView;
-    CardView etcCardView;
+    CardView gs25ListCardView;
+    CardView etcListCardView;
     ImageView profileImageView;
     TextView nickname;
     
@@ -56,8 +54,8 @@ public class MainActivity extends AppCompatActivity{
         profileInfoCardView = findViewById(R.id.accountCardView);
         sevenElevenListCardView = findViewById(R.id.sevenElevenCardView);
         cuListCardView = findViewById(R.id.cuCardView);
-        gs25CardView = findViewById(R.id.gs25CardView);
-        etcCardView = findViewById(R.id.etcCardView);
+        gs25ListCardView = findViewById(R.id.gs25CardView);
+        etcListCardView = findViewById(R.id.etcCardView);
 
         // 카드뷰 프로필 사진 지정
         profileImageView = findViewById(R.id.tv_profile);
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        gs25CardView.setOnClickListener(new View.OnClickListener() {
+        gs25ListCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
@@ -108,7 +106,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        etcCardView.setOnClickListener(new View.OnClickListener() {
+        etcListCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
@@ -140,7 +138,7 @@ public class MainActivity extends AppCompatActivity{
                 reload();   // refresh screen 
                 return true;
             case R.id.action_settings:
-                Intent setting_intent = new Intent(getApplicationContext(),SettingActivity.class);
+                Intent setting_intent = new Intent(getApplicationContext(), SettingActivity.class);
                 setting_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivityForResult(setting_intent, 101);
                 return true;
@@ -227,7 +225,6 @@ public class MainActivity extends AppCompatActivity{
         overridePendingTransition(0, 0);
         startActivity(intent);
     }
-
 
 }
 

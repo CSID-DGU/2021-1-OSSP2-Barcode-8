@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#D9F1F1"
     android:backgroundTint="#D9F1F1"
-    tools:context=".BarcodeScanActivity">
+    tools:context=".activity.BarcodeScanActivity">
 
     <SurfaceView
         android:id="@+id/cameraSurface"

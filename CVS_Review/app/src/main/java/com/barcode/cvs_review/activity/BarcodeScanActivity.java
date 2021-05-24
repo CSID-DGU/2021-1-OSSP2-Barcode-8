@@ -1,4 +1,4 @@
-package com.barcode.cvs_review;
+package com.barcode.cvs_review.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,23 +10,19 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.Html;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Toast;
 
+import com.barcode.cvs_review.R;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 
 import java.io.IOException;
-import java.util.List;
 
 public class BarcodeScanActivity extends AppCompatActivity {
     CameraSource cameraSource;
@@ -42,12 +38,12 @@ public class BarcodeScanActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_home:
-                Intent home_intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent home_intent = new Intent(getApplicationContext(), MainActivity.class);
                 home_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivityForResult(home_intent, 101);
                 return true;
             case R.id.action_settings:
-                Intent setting_intent = new Intent(getApplicationContext(),SettingActivity.class);
+                Intent setting_intent = new Intent(getApplicationContext(), SettingActivity.class);
                 setting_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivityForResult(setting_intent, 101);
                 return true;

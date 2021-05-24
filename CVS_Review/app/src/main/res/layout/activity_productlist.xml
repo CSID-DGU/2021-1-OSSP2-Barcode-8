@@ -6,6 +6,52 @@
     android:background="#D9F1F1"
     android:backgroundTint="#D9F1F1">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editText_main_searchKeyword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="0.6"
+                android:hint="검색할 제품명을 입력하세요"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/button_main_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="0.2"
+                android:text="검색" />
+
+            <Button
+                android:id="@+id/button_main_all"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="0.2"
+                android:text="전체보기" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listView_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="75dp"
@@ -15,4 +61,5 @@
         android:layout_margin="25dp"
         app:backgroundTint="#8CC1D3"
         app:srcCompat="@mipmap/ic_barcode_foreground" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

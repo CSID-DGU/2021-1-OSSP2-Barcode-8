@@ -1,14 +1,14 @@
-package com.barcode.cvs_review;
+package com.barcode.cvs_review.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.barcode.cvs_review.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SettingActivity extends AppCompatActivity {
@@ -22,7 +22,7 @@ public class SettingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_home:
-                Intent home_intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent home_intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivityForResult(home_intent, 101);
                 return true;
             case R.id.action_settings:

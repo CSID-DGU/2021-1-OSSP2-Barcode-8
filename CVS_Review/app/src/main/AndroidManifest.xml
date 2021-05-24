@@ -16,11 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CVS_Review"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BarcodeScanActivity" />
-        <activity android:name=".ProductSpecActivity" />
-        <activity android:name=".SettingActivity" />
+        <activity android:name=".activity.BarcodeScanActivity" />
+        <activity android:name=".activity.ProductSpecActivity" />
+        <activity android:name=".activity.SettingActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,8 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ProductListActivity"/>
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.ProductListActivity"/>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#D9F1F1"
     android:backgroundTint="#D9F1F1"
-    tools:context=".SettingActivity">
+    tools:context=".activity.SettingActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

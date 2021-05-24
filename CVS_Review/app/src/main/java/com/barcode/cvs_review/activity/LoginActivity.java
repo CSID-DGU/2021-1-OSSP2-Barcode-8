@@ -1,4 +1,4 @@
-package com.barcode.cvs_review;
+package com.barcode.cvs_review.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.barcode.cvs_review.CustomPreferenceManager;
+import com.barcode.cvs_review.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
