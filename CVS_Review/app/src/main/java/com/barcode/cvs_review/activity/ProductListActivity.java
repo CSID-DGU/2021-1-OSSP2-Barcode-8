@@ -93,7 +93,24 @@ public class ProductListActivity extends AppCompatActivity {
                 mEditTextSearchKeyword.setText("");
 
                 GetData task = new GetData();
-                task.execute( "http://" + IP_ADDRESS + "/query.php", Keyword);
+                if(selected == 0){
+                    // 세븐일레븐 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/query_sevenEleven.php", Keyword);
+                }
+                else if(selected == 1){
+                    // CU 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/query_cu.php", Keyword);
+                }
+                else if (selected == 2){
+                    // GS25 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/query_gs25.php", Keyword);
+                }
+                else{
+                    // 공통 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/query_etc.php", Keyword);
+                }
+
+
             }
         });
 
@@ -105,7 +122,22 @@ public class ProductListActivity extends AppCompatActivity {
                 mAdapter.notifyDataSetChanged();
 
                 GetData task = new GetData();
-                task.execute( "http://" + IP_ADDRESS + "/getjson.php", "");
+                if(selected == 0){
+                    // 세븐일레븐 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/getjson_sevenEleven.php", "");
+                }
+                else if(selected == 1){
+                    // CU 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/getjson_cu.php", "");
+                }
+                else if (selected == 2){
+                    // GS25 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/getjson_gs25.php", "");
+                }
+                else{
+                    // 공통 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/getjson_etc.php", "");
+                }
             }
         });
 

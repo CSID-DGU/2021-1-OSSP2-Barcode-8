@@ -66,7 +66,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/accountCardView"
             android:layout_width="match_parent"
-            android:layout_height="540dp"
+            android:layout_height="589dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             app:cardBackgroundColor="#FFFFFF"

@@ -13,7 +13,7 @@ $android = strpos($_SERVER['HTTP_USER_AGENT'], "Android");
 
 if ($PRODUCT_NAME != "" ){ 
 
-    $sql="select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE from PRODUCT join CVS on PRODUCT.CVS_CODE = CVS.CVS_CODE where PRODUCT_NAME LIKE '%$PRODUCT_NAME%'";
+    $sql="select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE from PRODUCT join CVS on PRODUCT.CVS_CODE = CVS.CVS_CODE where PRODUCT.CVS_CODE = 33333333 AND PRODUCT_NAME LIKE '%$PRODUCT_NAME%'";
     $stmt = $con->prepare($sql);
     $stmt->execute();
  
