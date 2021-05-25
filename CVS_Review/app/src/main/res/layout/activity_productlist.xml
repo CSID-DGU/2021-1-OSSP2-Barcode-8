@@ -54,22 +54,11 @@
             android:id="@+id/button_main_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:layout_weight="0.2"
             android:backgroundTint="#8CC1D3"
             android:fontFamily="@font/maplestorybold"
             android:text="검색" />
-
-        <Button
-            android:id="@+id/button_main_all"
-            android:layout_width="2dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="0.3"
-            android:backgroundTint="#8CC1D3"
-            android:fontFamily="@font/maplestorybold"
-            android:text="전체보기" />
 
     </LinearLayout>
 

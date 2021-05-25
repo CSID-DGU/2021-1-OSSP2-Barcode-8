@@ -56,30 +56,39 @@ public class ProductListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_productlist);
         Intent intent = getIntent();
         int selected = intent.getIntExtra("selected",3);
-        
-        if(selected == 0){
-            // 세븐일레븐 상품 목록
-            getSupportActionBar().setTitle("세븐일레븐");
-        }
-        else if(selected == 1){
-            // CU 상품 목록
-            getSupportActionBar().setTitle("CU");
-        }
-        else if (selected == 2){
-            // GS25 상품 목록
-            getSupportActionBar().setTitle("GS25");
-        }
-        else{
-            // 공통 상품 목록
-            getSupportActionBar().setTitle("공통 상품");
-        }
-
         mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mEditTextSearchKeyword = (EditText) findViewById(R.id.editText_main_searchKeyword);
         mArrayList = new ArrayList<>();
         mAdapter = new UsersAdapter(this, mArrayList);
         mRecyclerView.setAdapter(mAdapter);
+
+        mArrayList.clear();
+        mAdapter.notifyDataSetChanged();
+
+        GetData task = new GetData();
+        if(selected == 0){
+            // 세븐일레븐 상품 목록
+            getSupportActionBar().setTitle("세븐일레븐");
+            task.execute( "http://" + IP_ADDRESS + "/getjson_sevenEleven.php", "");
+        }
+        else if(selected == 1){
+            // CU 상품 목록
+            getSupportActionBar().setTitle("CU");
+            task.execute( "http://" + IP_ADDRESS + "/getjson_cu.php", "");
+        }
+        else if (selected == 2){
+            // GS25 상품 목록
+            getSupportActionBar().setTitle("GS25");
+            task.execute( "http://" + IP_ADDRESS + "/getjson_gs25.php", "");
+        }
+        else{
+            // 공통 상품 목록
+            getSupportActionBar().setTitle("공통 상품");
+            task.execute( "http://" + IP_ADDRESS + "/getjson_etc.php", "");
+        }
+
+
 
         Button button_search = (Button) findViewById(R.id.button_main_search);
         button_search.setOnClickListener(new View.OnClickListener() {
@@ -111,33 +120,6 @@ public class ProductListActivity extends AppCompatActivity {
                 }
 
 
-            }
-        });
-
-        Button button_all = (Button) findViewById(R.id.button_main_all);
-        button_all.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                mArrayList.clear();
-                mAdapter.notifyDataSetChanged();
-
-                GetData task = new GetData();
-                if(selected == 0){
-                    // 세븐일레븐 상품 목록
-                    task.execute( "http://" + IP_ADDRESS + "/getjson_sevenEleven.php", "");
-                }
-                else if(selected == 1){
-                    // CU 상품 목록
-                    task.execute( "http://" + IP_ADDRESS + "/getjson_cu.php", "");
-                }
-                else if (selected == 2){
-                    // GS25 상품 목록
-                    task.execute( "http://" + IP_ADDRESS + "/getjson_gs25.php", "");
-                }
-                else{
-                    // 공통 상품 목록
-                    task.execute( "http://" + IP_ADDRESS + "/getjson_etc.php", "");
-                }
             }
         });
 
