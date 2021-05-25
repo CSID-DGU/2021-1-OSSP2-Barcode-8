@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -91,7 +93,24 @@ public class ProductListActivity extends AppCompatActivity {
                 mEditTextSearchKeyword.setText("");
 
                 GetData task = new GetData();
-                task.execute( "http://" + IP_ADDRESS + "/query.php", Keyword);
+                if(selected == 0){
+                    // 세븐일레븐 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/query_sevenEleven.php", Keyword);
+                }
+                else if(selected == 1){
+                    // CU 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/query_cu.php", Keyword);
+                }
+                else if (selected == 2){
+                    // GS25 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/query_gs25.php", Keyword);
+                }
+                else{
+                    // 공통 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/query_etc.php", Keyword);
+                }
+
+
             }
         });
 
@@ -103,13 +122,53 @@ public class ProductListActivity extends AppCompatActivity {
                 mAdapter.notifyDataSetChanged();
 
                 GetData task = new GetData();
-                task.execute( "http://" + IP_ADDRESS + "/getjson.php", "");
+                if(selected == 0){
+                    // 세븐일레븐 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/getjson_sevenEleven.php", "");
+                }
+                else if(selected == 1){
+                    // CU 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/getjson_cu.php", "");
+                }
+                else if (selected == 2){
+                    // GS25 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/getjson_gs25.php", "");
+                }
+                else{
+                    // 공통 상품 목록
+                    task.execute( "http://" + IP_ADDRESS + "/getjson_etc.php", "");
+                }
             }
         });
 
         // FAB ICON
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new FABClickListener());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_actions, menu) ;
+
+        return true ;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_home:
+                Intent home_intent = new Intent(getApplicationContext(),MainActivity.class);
+                home_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivityForResult(home_intent, 101);
+                return true;
+            case R.id.action_settings:
+                Intent setting_intent = new Intent(getApplicationContext(), SettingActivity.class);
+                setting_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivityForResult(setting_intent, 101);
+                return true;
+            default :
+                return super.onOptionsItemSelected(item) ;
+        }
     }
 
     class FABClickListener implements View.OnClickListener{

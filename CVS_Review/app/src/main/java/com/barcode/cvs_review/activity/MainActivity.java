@@ -37,13 +37,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
 
-    CardView profileInfoCardView;
     CardView sevenElevenListCardView;
     CardView cuListCardView;
     CardView gs25ListCardView;
     CardView etcListCardView;
-    ImageView profileImageView;
-    TextView nickname;
     
 
     @Override
@@ -51,33 +48,10 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        profileInfoCardView = findViewById(R.id.accountCardView);
         sevenElevenListCardView = findViewById(R.id.sevenElevenCardView);
         cuListCardView = findViewById(R.id.cuCardView);
         gs25ListCardView = findViewById(R.id.gs25CardView);
         etcListCardView = findViewById(R.id.etcCardView);
-
-        // 카드뷰 프로필 사진 지정
-        profileImageView = findViewById(R.id.tv_profile);
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
-        Glide.with(MainActivity.this)
-                .load(Uri.parse(CustomPreferenceManager.getString(getApplicationContext(), "photoUrl")))
-                .apply(requestOptions)
-                .placeholder(R.drawable.egg)
-                .error(R.drawable.egg)
-                .into(profileImageView);
-        // 카드뷰 프로필 닉네임 지정
-        nickname = findViewById(R.id.textView);
-        nickname.setText(CustomPreferenceManager.getString(getApplicationContext(), "nickname"));
-        
-        // 카드뷰 클릭시 행동
-        profileInfoCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showLogoutDialog();
-            }
-        });
 
         sevenElevenListCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,49 +145,6 @@ public class MainActivity extends AppCompatActivity{
                     .setPermissions(Manifest.permission.CAMERA)
                     .check();
         }
-    }
-
-    /* Dialog For Account Logout */
-    public void showLogoutDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Logout").setMessage("Do you want to logout?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Logout 다이얼로그 Yes 누른 경우
-                if(CustomPreferenceManager.getBoolean(getApplicationContext(), "kakao")) {
-                    // 카카오 로그인이라면
-                    UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
-                        @Override
-                        public void onCompleteLogout() {
-                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
-                    });
-                }
-                AuthUI.getInstance().signOut(MainActivity.this).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        CustomPreferenceManager.clear(getApplicationContext()); // preference manager 값 다 정리
-                        Toast.makeText(getApplicationContext(), "로그아웃 성공", Toast.LENGTH_SHORT).show();  // toast로 알림
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);   // 다시 login activity로 보내고
-                        startActivity(intent);
-                        finish();   // Mainactivity 종료
-                    }
-                });
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            // Logout 다이얼로그 No 누른 경우
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();   // 창 없애기
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 
     /* refresh screen */

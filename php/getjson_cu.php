@@ -6,7 +6,7 @@
     include('dbcon.php');
         
 
-    $stmt = $con->prepare('select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE from PRODUCT join CVS on PRODUCT.CVS_CODE = CVS.CVS_CODE');
+    $stmt = $con->prepare('select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE from PRODUCT join CVS on PRODUCT.CVS_CODE = CVS.CVS_CODE where PRODUCT.CVS_CODE = 11111111');
     $stmt->execute();
 
     if ($stmt->rowCount() > 0)
