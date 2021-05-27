@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,6 +60,34 @@ public class ProductListActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mEditTextSearchKeyword = (EditText) findViewById(R.id.editText_main_searchKeyword);
+        mEditTextSearchKeyword.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    mArrayList.clear();
+                    mAdapter.notifyDataSetChanged();
+                    String Keyword = mEditTextSearchKeyword.getText().toString();
+                    Keyword = Keyword.replaceAll("\n", "");
+                    GetData task = new GetData();
+                    if (selected == 0) {
+                        // 세븐일레븐 상품 목록
+                        task.execute("http://" + IP_ADDRESS + "/query_sevenEleven.php", Keyword);
+                    } else if (selected == 1) {
+                        // CU 상품 목록
+                        task.execute("http://" + IP_ADDRESS + "/query_cu.php", Keyword);
+                    } else if (selected == 2) {
+                        // GS25 상품 목록
+                        task.execute("http://" + IP_ADDRESS + "/query_gs25.php", Keyword);
+                    } else {
+                        // 공통 상품 목록
+                        task.execute("http://" + IP_ADDRESS + "/query_etc.php", Keyword);
+                    }
+                }
+                return false;
+            }
+        });
+
+
         mArrayList = new ArrayList<>();
         mAdapter = new UsersAdapter(this, mArrayList);
         mRecyclerView.setAdapter(mAdapter);
@@ -99,6 +128,7 @@ public class ProductListActivity extends AppCompatActivity {
 
 
                 String Keyword =  mEditTextSearchKeyword.getText().toString();
+                Keyword = Keyword.replaceAll(" ","");
                 mEditTextSearchKeyword.setText("");
 
                 GetData task = new GetData();
