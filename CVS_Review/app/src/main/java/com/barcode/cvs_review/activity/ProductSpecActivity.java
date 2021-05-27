@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.barcode.cvs_review.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 
 public class ProductSpecActivity extends AppCompatActivity {
     TextView product_name;
@@ -27,7 +30,9 @@ public class ProductSpecActivity extends AppCompatActivity {
         String PRODUCT_IMAGE = intent.getStringExtra("PRODUCT_IMAGE");
 
         product_name.setText(PRODUCT_NAME);
-        Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).into(product_image);
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
+        Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).apply(requestOptions).into(product_image);
 
     }
 }
