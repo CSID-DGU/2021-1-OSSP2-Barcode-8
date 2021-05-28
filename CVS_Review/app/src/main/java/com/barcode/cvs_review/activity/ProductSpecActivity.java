@@ -121,7 +121,9 @@ public class ProductSpecActivity extends AppCompatActivity {
                         database.setPRODUCT_NAME(PRODUCT_NAME);
                         database.setPRODUCT_IMAGE_URL(PRODUCT_IMAGE);
                         product_name.setText(database.getPRODUCT_NAME());
-                        Glide.with(getApplicationContext()).load(database.getPRODUCT_IMAGE_URL()).into(product_image);
+                        RequestOptions requestOptions = new RequestOptions();
+                        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
+                        Glide.with(getApplicationContext()).load(database.getPRODUCT_IMAGE_URL()).apply(requestOptions).into(product_image);
                     }
 
                 } catch (JSONException e) {
@@ -130,7 +132,7 @@ public class ProductSpecActivity extends AppCompatActivity {
                 }
             }
         }
-        
+
         @Override
         protected String doInBackground(String... params) {
 
