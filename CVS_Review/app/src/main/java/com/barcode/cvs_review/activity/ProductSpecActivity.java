@@ -16,6 +16,9 @@ import com.barcode.cvs_review.Database;
 import com.barcode.cvs_review.R;
 import com.barcode.cvs_review.UsersAdapter;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -127,8 +130,7 @@ public class ProductSpecActivity extends AppCompatActivity {
                 }
             }
         }
-
-
+        
         @Override
         protected String doInBackground(String... params) {
 
