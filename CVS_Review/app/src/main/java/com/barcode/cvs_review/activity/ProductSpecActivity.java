@@ -60,11 +60,11 @@ public class ProductSpecActivity extends AppCompatActivity {
         if(barcode != null){
             GetData task = new GetData();
             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"http://" + IP_ADDRESS + "/getjson_barcode.php", barcode);
-            // PRODUCT_IMAGE = database.getPRODUCT_IMAGE_URL();
-            // PRODUCT_NAME = database.getPRODUCT_NAME();
         }
-        // product_name.setText(PRODUCT_NAME);
-        // Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).into(product_image);
+        product_name.setText(PRODUCT_NAME);
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
+        Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).apply(requestOptions).into(product_image);
 
     }
 
@@ -120,10 +120,13 @@ public class ProductSpecActivity extends AppCompatActivity {
                         database.setCVS_NAME(CVS_NAME);
                         database.setPRODUCT_NAME(PRODUCT_NAME);
                         database.setPRODUCT_IMAGE_URL(PRODUCT_IMAGE);
-                        product_name.setText(database.getPRODUCT_NAME());
+
+                        PRODUCT_IMAGE = database.getPRODUCT_IMAGE_URL();
+                        PRODUCT_NAME = database.getPRODUCT_NAME();
+                        product_name.setText(PRODUCT_NAME);
                         RequestOptions requestOptions = new RequestOptions();
                         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
-                        Glide.with(getApplicationContext()).load(database.getPRODUCT_IMAGE_URL()).apply(requestOptions).into(product_image);
+                        Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).apply(requestOptions).into(product_image);
                     }
 
                 } catch (JSONException e) {
