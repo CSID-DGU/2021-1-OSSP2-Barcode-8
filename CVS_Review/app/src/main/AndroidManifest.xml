@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.hardware.camera2.autofocus" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature android:name="android.hardware.camera2" />
 
     <application
@@ -16,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CVS_Review"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.InsertReview" />
         <activity android:name=".activity.BarcodeScanActivity" />
         <activity android:name=".activity.ProductSpecActivity" />
         <activity android:name=".activity.SettingActivity" />
@@ -29,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.ProductListActivity"/>
+        <activity android:name=".activity.ProductListActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
