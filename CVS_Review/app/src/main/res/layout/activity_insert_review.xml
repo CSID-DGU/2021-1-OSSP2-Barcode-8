@@ -21,7 +21,7 @@
 
 
     <RatingBar
-        android:id="@+id/ratingBar2"
+        android:id="@+id/product_ratingbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -35,7 +35,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textView5"
+            android:id="@+id/textbox_comment"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:layout_margin="30dp"
@@ -51,7 +51,7 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
