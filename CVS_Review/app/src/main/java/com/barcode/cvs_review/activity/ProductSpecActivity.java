@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,8 +36,10 @@ import java.util.ArrayList;
 public class ProductSpecActivity extends AppCompatActivity {
     TextView product_name;
     ImageView product_image;
+    RatingBar rating;
     String PRODUCT_NAME;
     String PRODUCT_IMAGE;
+    String AVE_GRADE;
     Database database = new Database();
 
     private static String IP_ADDRESS = "118.67.128.31";
@@ -52,16 +55,24 @@ public class ProductSpecActivity extends AppCompatActivity {
 
         product_image = findViewById(R.id.imageView);
         product_name = findViewById(R.id.textView);
+        rating = findViewById(R.id.ratingBar);
 
         Intent intent = getIntent();
         PRODUCT_NAME = intent.getStringExtra("PRODUCT_NAME");
         PRODUCT_IMAGE = intent.getStringExtra("PRODUCT_IMAGE");
+        AVE_GRADE = intent.getStringExtra("AVE_GRADE");
         String barcode = intent.getStringExtra("barcode");
+
         if(barcode != null){
             GetData task = new GetData();
             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"http://" + IP_ADDRESS + "/getjson_barcode.php", barcode);
         }
         product_name.setText(PRODUCT_NAME);
+        if(AVE_GRADE.equals("null")) {
+            AVE_GRADE = "3";
+        }
+        rating.setRating(Float.parseFloat(AVE_GRADE));
+
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
         Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).apply(requestOptions).into(product_image);
@@ -92,6 +103,7 @@ public class ProductSpecActivity extends AppCompatActivity {
             String TAG_CVS_NAME = "CVS_NAME";
             String TAG_PRODUCT_NAME = "PRODUCT_NAME";
             String TAG_PRODUCT_IMAGE = "PRODUCT_IMAGE";
+            String TAG_AVE_GRADE = "AVE_GRADE";
 
             progressDialog.dismiss();
             // mTextViewResult.setText(result);
@@ -105,6 +117,7 @@ public class ProductSpecActivity extends AppCompatActivity {
                 mJsonString = result;
                 try {
                     JSONObject jsonObject = new JSONObject(mJsonString);
+                    System.out.println("여기요" + mJsonString);
                     JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
                     for(int i=0;i<jsonArray.length();i++){
@@ -115,15 +128,21 @@ public class ProductSpecActivity extends AppCompatActivity {
                         String CVS_NAME = item.getString(TAG_CVS_NAME);
                         PRODUCT_NAME = item.getString(TAG_PRODUCT_NAME);
                         PRODUCT_IMAGE = item.getString(TAG_PRODUCT_IMAGE);
+                        AVE_GRADE = item.getString(TAG_AVE_GRADE);
 
                         database.setBARCODE(BARCODE);
                         database.setCVS_NAME(CVS_NAME);
                         database.setPRODUCT_NAME(PRODUCT_NAME);
                         database.setPRODUCT_IMAGE_URL(PRODUCT_IMAGE);
+                        database.setAVE_GRADE(AVE_GRADE);
+
 
                         PRODUCT_IMAGE = database.getPRODUCT_IMAGE_URL();
                         PRODUCT_NAME = database.getPRODUCT_NAME();
+                        AVE_GRADE = database.getAVE_GRADE();
                         product_name.setText(PRODUCT_NAME);
+                        rating.setRating(Float.parseFloat(AVE_GRADE));
+
                         RequestOptions requestOptions = new RequestOptions();
                         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
                         Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).apply(requestOptions).into(product_image);

@@ -315,6 +315,7 @@ public class ProductListActivity extends AppCompatActivity {
         String TAG_CVS_NAME = "CVS_NAME";
         String TAG_PRODUCT_NAME = "PRODUCT_NAME";
         String TAG_PRODUCT_IMAGE = "PRODUCT_IMAGE";
+        String TAG_AVE_GRADE = "AVE_GRADE";
 
 
 
@@ -330,6 +331,7 @@ public class ProductListActivity extends AppCompatActivity {
                 String CVS_NAME = item.getString(TAG_CVS_NAME);
                 String PRODUCT_NAME = item.getString(TAG_PRODUCT_NAME);
                 String PRODUCT_IMAGE = item.getString(TAG_PRODUCT_IMAGE);
+                String AVE_GRADE = item.getString(TAG_AVE_GRADE);
 
                 Database database = new Database();
 
@@ -337,6 +339,7 @@ public class ProductListActivity extends AppCompatActivity {
                 database.setCVS_NAME(CVS_NAME);
                 database.setPRODUCT_NAME(PRODUCT_NAME);
                 database.setPRODUCT_IMAGE_URL(PRODUCT_IMAGE);
+                database.setAVE_GRADE(AVE_GRADE);
 
                 mArrayList.add(database);
                 mAdapter.notifyDataSetChanged();
