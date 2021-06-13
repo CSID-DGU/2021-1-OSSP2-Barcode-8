@@ -6,7 +6,8 @@
     include('dbcon.php');
         
 
-    $stmt = $con->prepare('select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE from PRODUCT join CVS on PRODUCT.CVS_CODE = CVS.CVS_CODE where PRODUCT.CVS_CODE = 12345678');
+    //$stmt = $con->prepare('select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE from PRODUCT join CVS on PRODUCT.CVS_CODE = CVS.CVS_CODE where PRODUCT.CVS_CODE = 12345678');
+    $stmt = $con->prepare('select * from GET_ETC');
     $stmt->execute();
 
     if ($stmt->rowCount() > 0)
@@ -22,7 +23,8 @@
         	'BARCODE'=>$BARCODE,
 		'CVS_NAME'=>$CVS_NAME,
 		'PRODUCT_NAME'=>$PRODUCT_NAME,
-		'PRODUCT_IMAGE'=>$PRODUCT_IMAGE
+		'PRODUCT_IMAGE'=>$PRODUCT_IMAGE,
+        'AVE_GRADE'=>$AVE_GRADE
             ));
         }
 

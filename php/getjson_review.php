@@ -13,8 +13,8 @@ $android = strpos($_SERVER['HTTP_USER_AGENT'], "Android");
 
 if ($BARCODE != "" ){ 
 
-    //$sql="select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE from PRODUCT join CVS on PRODUCT.CVS_CODE = CVS.CVS_CODE where BARCODE = '$BARCODE'";
-    $sql="select * from GET_BARCODE where BARCODE = '$BARCODE'";
+    //$sql="select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE,AVE_GRADE from PRODUCT where BARCODE = '$BARCODE'";
+    $sql = "select * from GET_BARCODE WHERE BARCODE = '$BARCODE'";
     $stmt = $con->prepare($sql);
     $stmt->execute();
  

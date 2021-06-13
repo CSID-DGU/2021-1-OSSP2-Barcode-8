@@ -19,6 +19,7 @@
 
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, 1);
 
     if(function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc()) { 
         function undo_magic_quotes_gpc(&$array) { 

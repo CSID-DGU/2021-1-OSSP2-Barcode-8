@@ -13,7 +13,8 @@ $android = strpos($_SERVER['HTTP_USER_AGENT'], "Android");
 
 if ($PRODUCT_NAME != "" ){ 
 
-    $sql="select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE from PRODUCT join CVS on PRODUCT.CVS_CODE = CVS.CVS_CODE where PRODUCT.CVS_CODE = 22222222 AND PRODUCT_NAME LIKE '%$PRODUCT_NAME%'";
+    //$sql="select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE from PRODUCT join CVS on PRODUCT.CVS_CODE = CVS.CVS_CODE where PRODUCT.CVS_CODE = 22222222 AND PRODUCT_NAME LIKE '%$PRODUCT_NAME%'";
+    $sql="select * from GET_gs25 where PRODUCT_NAME LIKE '%$PRODUCT_NAME%'";
     $stmt = $con->prepare($sql);
     $stmt->execute();
  

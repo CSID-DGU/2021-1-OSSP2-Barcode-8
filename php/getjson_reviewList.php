@@ -13,15 +13,14 @@ $android = strpos($_SERVER['HTTP_USER_AGENT'], "Android");
 
 if ($BARCODE != "" ){ 
 
-    //$sql="select BARCODE,CVS_NAME,PRODUCT_NAME,PRODUCT_IMAGE from PRODUCT join CVS on PRODUCT.CVS_CODE = CVS.CVS_CODE where BARCODE = '$BARCODE'";
-    $sql="select * from GET_BARCODE where BARCODE = '$BARCODE'";
+    $sql="select BARCODE,PRODUCT_POINT,USER_INFO_ID,COMMENTS from PRODUCT_REVIEW where PRODUCT_REVIEW.BARCODE = '$BARCODE'";
     $stmt = $con->prepare($sql);
     $stmt->execute();
  
     if ($stmt->rowCount() == 0){
 
         echo "'";
-        echo $BARCODE;
+        echo $PRODUCT_NAME;
         echo "'은 찾을 수 없습니다.";
     }
 	else{
@@ -35,10 +34,9 @@ if ($BARCODE != "" ){
             array_push($data, 
             array(
             'BARCODE'=>$BARCODE,
-            'CVS_NAME'=>$CVS_NAME,
-            'PRODUCT_NAME'=>$PRODUCT_NAME,
-            'PRODUCT_IMAGE'=>$PRODUCT_IMAGE,
-            'AVE_GRADE'=>$AVE_GRADE
+            'PRODUCT_POINT'=>$PRODUCT_POINT,
+            'USER_INFO_ID'=>$USER_INFO_ID,
+            'COMMENTS'=>$COMMENTS
             ));
         }
 
