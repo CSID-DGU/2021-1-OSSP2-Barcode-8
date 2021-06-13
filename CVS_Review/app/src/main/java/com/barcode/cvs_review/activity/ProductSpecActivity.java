@@ -1,23 +1,20 @@
 package com.barcode.cvs_review.activity;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.barcode.cvs_review.CommentAdapter;
 import com.barcode.cvs_review.Database;
 import com.barcode.cvs_review.R;
 import com.barcode.cvs_review.UsersAdapter;
@@ -25,9 +22,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,17 +34,23 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProductSpecActivity extends AppCompatActivity {
     TextView product_name;
     ImageView product_image;
     RatingBar rating;
-    ImageView add;
     String PRODUCT_NAME;
     String PRODUCT_IMAGE;
+    String USER_ID;
+    String COMMENT;
     String AVE_GRADE;
+    String BARCODE;
+    String PRODUCT_POINT;
     Database database = new Database();
+
+    ArrayList<Database> mArrayList;
+    CommentAdapter mAdapter;
+    RecyclerView mRecyclerView;
 
     private static String IP_ADDRESS = "118.67.128.31";
     private static String TAG = "phptest";
@@ -63,39 +63,44 @@ public class ProductSpecActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productspec);
 
+        mRecyclerView = findViewById(R.id.comment_list);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mArrayList = new ArrayList<>();
+        mAdapter = new CommentAdapter(this, mArrayList);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mArrayList.clear();
+        mAdapter.notifyDataSetChanged();
+
         product_image = findViewById(R.id.imageView);
         product_name = findViewById(R.id.textView);
         rating = findViewById(R.id.ratingBar);
-        add = findViewById(R.id.add);
 
         Intent intent = getIntent();
         PRODUCT_NAME = intent.getStringExtra("PRODUCT_NAME");
         PRODUCT_IMAGE = intent.getStringExtra("PRODUCT_IMAGE");
         AVE_GRADE = intent.getStringExtra("AVE_GRADE");
-        String barcode = intent.getStringExtra("barcode");
+        BARCODE = intent.getStringExtra("BARCODE");
 
-        if(barcode != null){
+        if(BARCODE != null){
             GetData task = new GetData();
-            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"http://" + IP_ADDRESS + "/getjson_barcode.php", barcode);
+            task.execute("http://" + IP_ADDRESS + "/getjson_reviewList.php", BARCODE);
         }
         product_name.setText(PRODUCT_NAME);
         if(AVE_GRADE.equals("null")) {
-            AVE_GRADE = "3";
+            AVE_GRADE = "0";
         }
         rating.setRating(Float.parseFloat(AVE_GRADE));
+
+        GetData commentTask = new GetData();
+        // commentTask.execute("http://" + IP_ADDRESS + "/getjson_reviewList.php", BARCODE);
+        mAdapter.notifyDataSetChanged();
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
         Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).apply(requestOptions).into(product_image);
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProductSpecActivity.this, InsertReview.class);
-                intent.putExtra("NAME", PRODUCT_NAME);
-                startActivity(intent);
-            }
-        });
+
 
     }
 
@@ -118,13 +123,6 @@ public class ProductSpecActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            String TAG_JSON="barcode";
-            String TAG_BARCODE="BARCODE";
-            String TAG_CVS_NAME = "CVS_NAME";
-            String TAG_PRODUCT_NAME = "PRODUCT_NAME";
-            String TAG_PRODUCT_IMAGE = "PRODUCT_IMAGE";
-            String TAG_AVE_GRADE = "AVE_GRADE";
-
             progressDialog.dismiss();
             // mTextViewResult.setText(result);
             Log.d(TAG, "response - " + result);
@@ -134,46 +132,68 @@ public class ProductSpecActivity extends AppCompatActivity {
                 // mTextViewResult.setText(errorString);
             }
             else {
+
+                mJsonString = result;
+                showResult();
+            }
+        }
+
+        /*@Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            String TAG_JSON="barcode";
+            String TAG_BARCODE="BARCODE";
+            String TAG_CVS_NAME = "CVS_NAME";
+            String TAG_PRODUCT_NAME = "PRODUCT_NAME";
+            String TAG_PRODUCT_IMAGE = "PRODUCT_IMAGE";
+            String TAG_AVE_GRADE = "AVE_GRADE";
+            String TAG_USER_ID = "USER_INFO_ID";
+            String TAG_COMMENT = "COMMNETS";
+            progressDialog.dismiss();
+            // mTextViewResult.setText(result);
+            Log.d(TAG, "response - " + result);
+            if (result == null){
+                // mTextViewResult.setText(errorString);
+            }
+            else {
                 mJsonString = result;
                 try {
                     JSONObject jsonObject = new JSONObject(mJsonString);
                     System.out.println("여기요" + mJsonString);
                     JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-
                     for(int i=0;i<jsonArray.length();i++){
-
                         JSONObject item = jsonArray.getJSONObject(i);
-
                         String BARCODE = item.getString(TAG_BARCODE);
                         String CVS_NAME = item.getString(TAG_CVS_NAME);
                         PRODUCT_NAME = item.getString(TAG_PRODUCT_NAME);
                         PRODUCT_IMAGE = item.getString(TAG_PRODUCT_IMAGE);
                         AVE_GRADE = item.getString(TAG_AVE_GRADE);
-
+                        USER_ID = item.getString(TAG_USER_ID);
+                        COMMENT = item.getString(TAG_COMMENT);
+                        PRODUCT_POINT = item.getString(PRODUCT_POINT);
                         database.setBARCODE(BARCODE);
                         database.setCVS_NAME(CVS_NAME);
                         database.setPRODUCT_NAME(PRODUCT_NAME);
                         database.setPRODUCT_IMAGE_URL(PRODUCT_IMAGE);
                         database.setAVE_GRADE(AVE_GRADE);
-
-
+                        database.setUSER_ID(USER_ID);
+                        database.setCOMMENTS(COMMENT);
+                        database.setPRODUCT_POINT(PRODUCT_POINT);
                         PRODUCT_IMAGE = database.getPRODUCT_IMAGE_URL();
                         PRODUCT_NAME = database.getPRODUCT_NAME();
                         AVE_GRADE = database.getAVE_GRADE();
                         product_name.setText(PRODUCT_NAME);
+                        USER_ID = database.getUSER_ID();
+                        COMMENT = database.getCOMMENTS();
+                        PRODUCT_POINT = database.getPRODUCT_POINT();
                         rating.setRating(Float.parseFloat(AVE_GRADE));
-
-                        RequestOptions requestOptions = new RequestOptions();
-                        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
-                        Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).apply(requestOptions).into(product_image);
                     }
-
+                    showResult();
                 } catch (JSONException e) {
-
                     Log.d(TAG, "showResult : ", e);
                 }
             }
-        }
+        }*/
 
         @Override
         protected String doInBackground(String... params) {
@@ -237,29 +257,56 @@ public class ProductSpecActivity extends AppCompatActivity {
             }
 
         }
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_actions, menu) ;
 
-        return true ;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_home:
+        private void showResult(){
 
-                Intent home_intent = new Intent(getApplicationContext(),MainActivity.class);
-                home_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivityForResult(home_intent, 101);
-                return true;
-            case R.id.action_settings:
-                Intent setting_intent = new Intent(getApplicationContext(), SettingActivity.class);
-                setting_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivityForResult(setting_intent, 101);
-                return true;
-            default :
-                return super.onOptionsItemSelected(item) ;
+            String TAG_JSON="barcode";
+            String TAG_BARCODE="BARCODE";
+            String TAG_CVS_NAME = "CVS_NAME";
+            String TAG_PRODUCT_NAME = "PRODUCT_NAME";
+            String TAG_PRODUCT_IMAGE = "PRODUCT_IMAGE";
+            String TAG_AVE_GRADE = "AVE_GRADE";
+            String TAG_USER_ID = "USER_INFO_ID";
+            String TAG_COMMENT = "COMMENTS";
+            String TAG_PRODUCT_POINT = "PRODUCT_POINT";
+
+            try {
+                JSONObject jsonObject = new JSONObject(mJsonString);
+                JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+                for(int i=0;i<jsonArray.length();i++){
+
+                    JSONObject item = jsonArray.getJSONObject(i);
+
+                    String BARCODE = item.getString(TAG_BARCODE);
+                    String CVS_NAME = item.getString(TAG_CVS_NAME);
+                    String PRODUCT_NAME = item.getString(TAG_PRODUCT_NAME);
+                    String PRODUCT_IMAGE = item.getString(TAG_PRODUCT_IMAGE);
+                    //String AVE_GRADE = item.getString(TAG_AVE_GRADE);
+                    String USER_ID = item.getString(TAG_USER_ID);
+                    String COMMENT = item.getString(TAG_COMMENT);
+                    String PRODUCT_POINT = item.getString(TAG_PRODUCT_POINT);
+
+                    Database database = new Database();
+
+                    database.setBARCODE(BARCODE);
+                    database.setCVS_NAME(CVS_NAME);
+                    database.setPRODUCT_NAME(PRODUCT_NAME);
+                    database.setPRODUCT_IMAGE_URL(PRODUCT_IMAGE);
+                    //database.setAVE_GRADE(AVE_GRADE);
+                    database.setPRODUCT_POINT(PRODUCT_POINT);
+                    database.setUSER_ID(USER_ID);
+                    database.setCOMMENTS(COMMENT);
+                    Log.d("리뷰: ", COMMENT);
+
+                    mArrayList.add(database);
+                    mAdapter.notifyDataSetChanged();
+                }
+            } catch (JSONException e) {
+
+                Log.d(TAG, "showResult : ", e);
+            }
+
         }
     }
 
