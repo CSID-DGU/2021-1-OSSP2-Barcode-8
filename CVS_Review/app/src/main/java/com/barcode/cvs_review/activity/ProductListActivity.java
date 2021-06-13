@@ -45,11 +45,11 @@ public class ProductListActivity extends AppCompatActivity {
     private static String IP_ADDRESS = "118.67.128.31";
     private static String TAG = "phptest";
 
-    private ArrayList<Database> mArrayList;
-    private UsersAdapter mAdapter;
-    private RecyclerView mRecyclerView;
-    private EditText mEditTextSearchKeyword;
-    private String mJsonString;
+    ArrayList<Database> mArrayList;
+    UsersAdapter mAdapter;
+    RecyclerView mRecyclerView;
+    EditText mEditTextSearchKeyword;
+    String mJsonString;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

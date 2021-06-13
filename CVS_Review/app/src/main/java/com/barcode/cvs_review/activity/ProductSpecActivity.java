@@ -11,8 +11,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.barcode.cvs_review.CommentAdapter;
 import com.barcode.cvs_review.Database;
 import com.barcode.cvs_review.R;
 import com.barcode.cvs_review.UsersAdapter;
@@ -39,8 +41,16 @@ public class ProductSpecActivity extends AppCompatActivity {
     RatingBar rating;
     String PRODUCT_NAME;
     String PRODUCT_IMAGE;
+    String USER_ID;
+    String COMMENT;
     String AVE_GRADE;
+    String BARCODE;
+    String PRODUCT_POINT;
     Database database = new Database();
+
+    ArrayList<Database> mArrayList;
+    CommentAdapter mAdapter;
+    RecyclerView mRecyclerView;
 
     private static String IP_ADDRESS = "118.67.128.31";
     private static String TAG = "phptest";
@@ -53,6 +63,15 @@ public class ProductSpecActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productspec);
 
+        mRecyclerView = findViewById(R.id.comment_list);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mArrayList = new ArrayList<>();
+        mAdapter = new CommentAdapter(this, mArrayList);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mArrayList.clear();
+        mAdapter.notifyDataSetChanged();
+
         product_image = findViewById(R.id.imageView);
         product_name = findViewById(R.id.textView);
         rating = findViewById(R.id.ratingBar);
@@ -61,21 +80,27 @@ public class ProductSpecActivity extends AppCompatActivity {
         PRODUCT_NAME = intent.getStringExtra("PRODUCT_NAME");
         PRODUCT_IMAGE = intent.getStringExtra("PRODUCT_IMAGE");
         AVE_GRADE = intent.getStringExtra("AVE_GRADE");
-        String barcode = intent.getStringExtra("barcode");
+        BARCODE = intent.getStringExtra("BARCODE");
 
-        if(barcode != null){
+        if(BARCODE != null){
             GetData task = new GetData();
-            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"http://" + IP_ADDRESS + "/getjson_barcode.php", barcode);
+            task.execute("http://" + IP_ADDRESS + "/getjson_reviewList.php", BARCODE);
         }
         product_name.setText(PRODUCT_NAME);
         if(AVE_GRADE.equals("null")) {
-            AVE_GRADE = "3";
+            AVE_GRADE = "0";
         }
         rating.setRating(Float.parseFloat(AVE_GRADE));
+
+        GetData commentTask = new GetData();
+        // commentTask.execute("http://" + IP_ADDRESS + "/getjson_reviewList.php", BARCODE);
+        mAdapter.notifyDataSetChanged();
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
         Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).apply(requestOptions).into(product_image);
+
+
 
     }
 
@@ -98,12 +123,33 @@ public class ProductSpecActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
+            progressDialog.dismiss();
+            // mTextViewResult.setText(result);
+            Log.d(TAG, "response - " + result);
+
+            if (result == null){
+
+                // mTextViewResult.setText(errorString);
+            }
+            else {
+
+                mJsonString = result;
+                showResult();
+            }
+        }
+
+        /*@Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
             String TAG_JSON="barcode";
             String TAG_BARCODE="BARCODE";
             String TAG_CVS_NAME = "CVS_NAME";
             String TAG_PRODUCT_NAME = "PRODUCT_NAME";
             String TAG_PRODUCT_IMAGE = "PRODUCT_IMAGE";
             String TAG_AVE_GRADE = "AVE_GRADE";
+            String TAG_USER_ID = "USER_INFO_ID";
+            String TAG_COMMENT = "COMMNETS";
 
             progressDialog.dismiss();
             // mTextViewResult.setText(result);
@@ -129,31 +175,35 @@ public class ProductSpecActivity extends AppCompatActivity {
                         PRODUCT_NAME = item.getString(TAG_PRODUCT_NAME);
                         PRODUCT_IMAGE = item.getString(TAG_PRODUCT_IMAGE);
                         AVE_GRADE = item.getString(TAG_AVE_GRADE);
+                        USER_ID = item.getString(TAG_USER_ID);
+                        COMMENT = item.getString(TAG_COMMENT);
+                        PRODUCT_POINT = item.getString(PRODUCT_POINT);
 
                         database.setBARCODE(BARCODE);
                         database.setCVS_NAME(CVS_NAME);
                         database.setPRODUCT_NAME(PRODUCT_NAME);
                         database.setPRODUCT_IMAGE_URL(PRODUCT_IMAGE);
                         database.setAVE_GRADE(AVE_GRADE);
-
+                        database.setUSER_ID(USER_ID);
+                        database.setCOMMENTS(COMMENT);
+                        database.setPRODUCT_POINT(PRODUCT_POINT);
 
                         PRODUCT_IMAGE = database.getPRODUCT_IMAGE_URL();
                         PRODUCT_NAME = database.getPRODUCT_NAME();
                         AVE_GRADE = database.getAVE_GRADE();
                         product_name.setText(PRODUCT_NAME);
+                        USER_ID = database.getUSER_ID();
+                        COMMENT = database.getCOMMENTS();
+                        PRODUCT_POINT = database.getPRODUCT_POINT();
                         rating.setRating(Float.parseFloat(AVE_GRADE));
-
-                        RequestOptions requestOptions = new RequestOptions();
-                        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
-                        Glide.with(getApplicationContext()).load(PRODUCT_IMAGE).apply(requestOptions).into(product_image);
                     }
-
+                    showResult();
                 } catch (JSONException e) {
 
                     Log.d(TAG, "showResult : ", e);
                 }
             }
-        }
+        }*/
 
         @Override
         protected String doInBackground(String... params) {
@@ -214,6 +264,57 @@ public class ProductSpecActivity extends AppCompatActivity {
                 errorString = e.toString();
 
                 return null;
+            }
+
+        }
+
+        private void showResult(){
+
+            String TAG_JSON="barcode";
+            String TAG_BARCODE="BARCODE";
+            String TAG_CVS_NAME = "CVS_NAME";
+            String TAG_PRODUCT_NAME = "PRODUCT_NAME";
+            String TAG_PRODUCT_IMAGE = "PRODUCT_IMAGE";
+            String TAG_AVE_GRADE = "AVE_GRADE";
+            String TAG_USER_ID = "USER_INFO_ID";
+            String TAG_COMMENT = "COMMENTS";
+            String TAG_PRODUCT_POINT = "PRODUCT_POINT";
+
+            try {
+                JSONObject jsonObject = new JSONObject(mJsonString);
+                JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+                for(int i=0;i<jsonArray.length();i++){
+
+                    JSONObject item = jsonArray.getJSONObject(i);
+
+                    String BARCODE = item.getString(TAG_BARCODE);
+                    String CVS_NAME = item.getString(TAG_CVS_NAME);
+                    String PRODUCT_NAME = item.getString(TAG_PRODUCT_NAME);
+                    String PRODUCT_IMAGE = item.getString(TAG_PRODUCT_IMAGE);
+                    //String AVE_GRADE = item.getString(TAG_AVE_GRADE);
+                    String USER_ID = item.getString(TAG_USER_ID);
+                    String COMMENT = item.getString(TAG_COMMENT);
+                    String PRODUCT_POINT = item.getString(TAG_PRODUCT_POINT);
+
+                    Database database = new Database();
+
+                    database.setBARCODE(BARCODE);
+                    database.setCVS_NAME(CVS_NAME);
+                    database.setPRODUCT_NAME(PRODUCT_NAME);
+                    database.setPRODUCT_IMAGE_URL(PRODUCT_IMAGE);
+                    //database.setAVE_GRADE(AVE_GRADE);
+                    database.setPRODUCT_POINT(PRODUCT_POINT);
+                    database.setUSER_ID(USER_ID);
+                    database.setCOMMENTS(COMMENT);
+                    Log.d("리뷰: ", COMMENT);
+
+                    mArrayList.add(database);
+                    mAdapter.notifyDataSetChanged();
+                }
+            } catch (JSONException e) {
+
+                Log.d(TAG, "showResult : ", e);
             }
 
         }

@@ -13,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.barcode.cvs_review.activity.MainActivity;
-import com.barcode.cvs_review.activity.ProductListActivity;
 import com.barcode.cvs_review.activity.ProductSpecActivity;
 import com.bumptech.glide.Glide;
 
@@ -44,8 +42,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
         public CustomViewHolder(View view) {
             super(view);
             // this.BARCODE = (TextView) view.findViewById(R.id.textView_list_BARCODE);
-            this.CVS_NAME = (TextView) view.findViewById(R.id.textView_list_CVS_NAME);
-            this.PRODUCT_NAME = (TextView) view.findViewById(R.id.textView_list_PRODUCT_NAME);
+            this.CVS_NAME = (TextView) view.findViewById(R.id.textView_product_point);
+            this.PRODUCT_NAME = (TextView) view.findViewById(R.id.textView_comments);
             this.PRODUCT_IMAGE = (ImageView) view.findViewById(R.id.imageView_product_image);
         }
     }
@@ -74,6 +72,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
                 intent.putExtra("PRODUCT_NAME", mList.get(position).getPRODUCT_NAME());
                 intent.putExtra("PRODUCT_IMAGE", mList.get(position).getPRODUCT_IMAGE_URL());
                 intent.putExtra("AVE_GRADE", mList.get(position).getAVE_GRADE());
+                intent.putExtra("BARCODE", mList.get(position).getBARCODE());
                 ContextCompat.startActivity(viewholder.itemView.getContext(), intent, null);
             }
         });

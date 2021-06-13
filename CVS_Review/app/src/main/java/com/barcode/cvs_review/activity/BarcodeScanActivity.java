@@ -106,7 +106,7 @@ public class BarcodeScanActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Intent barcodeInfoIntent = new Intent(getApplicationContext(), ProductSpecActivity.class);
-                            barcodeInfoIntent.putExtra("barcode", barcodeNumber);
+                            barcodeInfoIntent.putExtra("BARCODE", barcodeNumber);
                             startActivity(barcodeInfoIntent);
                             barcodeDetector.release();
                             finish();
