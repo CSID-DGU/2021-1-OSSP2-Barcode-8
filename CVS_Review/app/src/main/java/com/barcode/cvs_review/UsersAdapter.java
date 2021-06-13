@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.barcode.cvs_review.activity.MainActivity;
@@ -37,6 +38,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
         protected TextView PRODUCT_NAME;
         protected TextView BARCODE;
         protected ImageView PRODUCT_IMAGE;
+        protected RatingBar AVE_GRADE;
 
 
         public CustomViewHolder(View view) {
@@ -71,6 +73,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
                 intent.putExtra("CVS_NAME", mList.get(position).getCVS_NAME());
                 intent.putExtra("PRODUCT_NAME", mList.get(position).getPRODUCT_NAME());
                 intent.putExtra("PRODUCT_IMAGE", mList.get(position).getPRODUCT_IMAGE_URL());
+                intent.putExtra("AVE_GRADE", mList.get(position).getAVE_GRADE());
                 ContextCompat.startActivity(viewholder.itemView.getContext(), intent, null);
             }
         });
