@@ -41,6 +41,7 @@ public class InsertReview extends AppCompatActivity {
     String PRODUCT_POINT;
     Button send_button;
     RatingBar product_ratingbar;
+    float rating_f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,20 +52,29 @@ public class InsertReview extends AppCompatActivity {
         commentView = findViewById(R.id.textbox_comment);
         send_button = findViewById(R.id.button_send);
         product_ratingbar = findViewById(R.id.product_ratingbar);
+        product_ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                rating_f = rating;
+            }
+        });
 
         Intent intent = getIntent();
         PRODUCT_NAME = intent.getStringExtra("PRODUCT_NAME");
         BARCODE = intent.getStringExtra("BARCODE");
         USER_INFO_ID = CustomPreferenceManager.getString(getApplicationContext(),"userEmail");
         product_name.setText(PRODUCT_NAME);
-        PRODUCT_POINT = Float.toString(product_ratingbar.getRating());
-        PRODUCT_COMMENT = Objects.requireNonNull(commentView.getText()).toString();
+
+
         Objects.requireNonNull(getSupportActionBar()).setTitle("Review");
 
         send_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetData task = new GetData();
+                //GetData task = new GetData();
+                PRODUCT_POINT = Float.toString(rating_f);
+                PRODUCT_COMMENT = Objects.requireNonNull(commentView.getText()).toString();
+                InsertData task = new InsertData();
                 task.execute("http://" + IP_ADDRESS + "/insert_review.php", BARCODE, PRODUCT_POINT, USER_INFO_ID, PRODUCT_COMMENT);
                 Toast.makeText(getApplicationContext(),"정상적으로 등록되었습니다", Toast.LENGTH_SHORT).show();
                 finish();
@@ -95,6 +105,96 @@ public class InsertReview extends AppCompatActivity {
                 return true;
             default :
                 return super.onOptionsItemSelected(item) ;
+        }
+    }
+
+    class InsertData extends AsyncTask<String, Void, String>{
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(InsertReview.this,
+                    "Please Wait", null, true, true);
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+            //mTextViewResult.setText(result);
+            Log.d(TAG, "POST response  - " + result);
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+            String BARCODE = (String)params[1];
+            String PRODUCT_POINT = (String)params[2];
+            String USER_INFO_ID = (String)params[3];
+            String PRODUCT_COMMENT = (String)params[4];
+
+            String serverURL = (String)params[0];
+            String postParameters = "BARCODE=" + BARCODE + "&PRODUCT_POINT=" + PRODUCT_POINT +"&USER_INFO_ID="+USER_INFO_ID+"&COMMENTS="+PRODUCT_COMMENT;
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "InsertData: Error ", e);
+
+                return new String("Error: " + e.getMessage());
+            }
+
         }
     }
 
@@ -192,6 +292,8 @@ public class InsertReview extends AppCompatActivity {
 
         }
     }
+
+
 }
 
 
