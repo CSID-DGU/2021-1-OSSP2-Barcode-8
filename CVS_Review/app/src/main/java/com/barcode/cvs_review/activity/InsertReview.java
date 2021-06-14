@@ -108,7 +108,7 @@ public class InsertReview extends AppCompatActivity {
         }
     }
 
-    class InsertData extends AsyncTask<String, Void, String>{
+    private class InsertData extends AsyncTask<String, Void, String>{
         ProgressDialog progressDialog;
 
         @Override
@@ -135,11 +135,10 @@ public class InsertReview extends AppCompatActivity {
             String BARCODE = (String)params[1];
             String PRODUCT_POINT = (String)params[2];
             String USER_INFO_ID = (String)params[3];
-            String PRODUCT_COMMENT = (String)params[4];
+            String COMMENTS= (String)params[4];
 
             String serverURL = (String)params[0];
-            String postParameters = "BARCODE=" + BARCODE + "&PRODUCT_POINT=" + PRODUCT_POINT +"&USER_INFO_ID="+USER_INFO_ID+"&COMMENTS="+PRODUCT_COMMENT;
-
+            String postParameters = "BARCODE=" + BARCODE + "&PRODUCT_POINT=" + PRODUCT_POINT +"&USER_INFO_ID="+USER_INFO_ID+"&COMMENTS="+COMMENTS;
 
             try {
 
@@ -158,7 +157,6 @@ public class InsertReview extends AppCompatActivity {
                 outputStream.flush();
                 outputStream.close();
 
-
                 int responseStatusCode = httpURLConnection.getResponseCode();
                 Log.d(TAG, "POST response code - " + responseStatusCode);
 
@@ -175,7 +173,7 @@ public class InsertReview extends AppCompatActivity {
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
                 StringBuilder sb = new StringBuilder();
-                String line = null;
+                String line;
 
                 while((line = bufferedReader.readLine()) != null){
                     sb.append(line);
