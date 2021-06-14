@@ -5,8 +5,10 @@
 
     include('dbcon.php');
 
+    $android = strpos($_SERVER['HTTP_USER_AGENT'], "Android");
 
-    if( ($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit']))
+
+    if( (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submit'])) || $android )
     {
 
         $BARCODE=$_POST['BARCODE'];
