@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.barcode.cvs_review.CommentAdapter;
+import com.barcode.cvs_review.CustomPreferenceManager;
 import com.barcode.cvs_review.Database;
 import com.barcode.cvs_review.R;
 import com.bumptech.glide.Glide;
@@ -40,11 +41,11 @@ public class ProductSpecActivity extends AppCompatActivity {
     TextView product_name;
     ImageView product_image;
     RatingBar rating;
-    String PRODUCT_NAME;
-    String PRODUCT_IMAGE;
+    public String PRODUCT_NAME;
+    public String PRODUCT_IMAGE;
     String USER_ID;
     String COMMENT;
-    String AVE_GRADE;
+    public String AVE_GRADE;
     String BARCODE;
     String PRODUCT_POINT;
     Database database = new Database();
@@ -81,12 +82,16 @@ public class ProductSpecActivity extends AppCompatActivity {
         PRODUCT_NAME = intent.getStringExtra("PRODUCT_NAME");
         PRODUCT_IMAGE = intent.getStringExtra("PRODUCT_IMAGE");
         AVE_GRADE = intent.getStringExtra("AVE_GRADE");
+        if(AVE_GRADE == null){
+            AVE_GRADE = "0";
+        }
         BARCODE = intent.getStringExtra("BARCODE");
 
-        if(BARCODE != null){
-            GetData task = new GetData();
-            task.execute("http://" + IP_ADDRESS + "/getjson_reviewList.php", BARCODE);
-        }
+        GetData task = new GetData();
+        task.execute("http://" + IP_ADDRESS + "/getjson_reviewList.php", BARCODE);
+        PRODUCT_NAME = CustomPreferenceManager.getString(getApplicationContext(),"spec_product_name");
+        PRODUCT_IMAGE = CustomPreferenceManager.getString(getApplicationContext(),"spec_product_image");
+        //AVE_GRADE = mArrayList.get(0).getAVE_GRADE();
         product_name.setText(PRODUCT_NAME);
         if(AVE_GRADE.equals("null")) {
             AVE_GRADE = "0";
@@ -297,9 +302,11 @@ public class ProductSpecActivity extends AppCompatActivity {
 
                     String BARCODE = item.getString(TAG_BARCODE);
                     String CVS_NAME = item.getString(TAG_CVS_NAME);
-                    String PRODUCT_NAME = item.getString(TAG_PRODUCT_NAME);
-                    String PRODUCT_IMAGE = item.getString(TAG_PRODUCT_IMAGE);
-                    //String AVE_GRADE = item.getString(TAG_AVE_GRADE);
+                    PRODUCT_NAME = item.getString(TAG_PRODUCT_NAME);
+                    CustomPreferenceManager.setString(getApplicationContext(),"spec_product_name", PRODUCT_NAME);
+                    PRODUCT_IMAGE = item.getString(TAG_PRODUCT_IMAGE);
+                    CustomPreferenceManager.setString(getApplicationContext(),"spec_product_image", PRODUCT_IMAGE);
+                    // AVE_GRADE = item.getString(TAG_AVE_GRADE);
                     String USER_ID = item.getString(TAG_USER_ID);
                     String COMMENT = item.getString(TAG_COMMENT);
                     String PRODUCT_POINT = item.getString(TAG_PRODUCT_POINT);
