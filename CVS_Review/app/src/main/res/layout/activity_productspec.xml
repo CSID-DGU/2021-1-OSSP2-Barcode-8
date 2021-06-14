@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/comment_list"
+        android:id="@+id/mycomment_list"
         android:layout_width="413dp"
         android:layout_height="422dp"
         app:layout_constraintEnd_toEndOf="parent"

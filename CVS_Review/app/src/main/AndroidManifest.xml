@@ -17,6 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CVS_Review"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.Notice"></activity>
+        <activity android:name=".activity.MyPage" />
         <activity android:name=".activity.InsertReview" />
         <activity android:name=".activity.BarcodeScanActivity" />
         <activity android:name=".activity.ProductSpecActivity" />

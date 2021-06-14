@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -20,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.barcode.cvs_review.CommentAdapter;
 import com.barcode.cvs_review.Database;
 import com.barcode.cvs_review.R;
-import com.barcode.cvs_review.UsersAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -66,7 +64,7 @@ public class ProductSpecActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productspec);
 
-        mRecyclerView = findViewById(R.id.comment_list);
+        mRecyclerView = findViewById(R.id.mycomment_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mArrayList = new ArrayList<>();
         mAdapter = new CommentAdapter(this, mArrayList);
@@ -95,8 +93,6 @@ public class ProductSpecActivity extends AppCompatActivity {
         }
         rating.setRating(Float.parseFloat(AVE_GRADE));
 
-        GetData commentTask = new GetData();
-        // commentTask.execute("http://" + IP_ADDRESS + "/getjson_reviewList.php", BARCODE);
         mAdapter.notifyDataSetChanged();
 
         RequestOptions requestOptions = new RequestOptions();
@@ -181,7 +177,6 @@ public class ProductSpecActivity extends AppCompatActivity {
                 mJsonString = result;
                 try {
                     JSONObject jsonObject = new JSONObject(mJsonString);
-                    System.out.println("여기요" + mJsonString);
                     JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject item = jsonArray.getJSONObject(i);

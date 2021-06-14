@@ -39,6 +39,9 @@ public class SettingActivity extends AppCompatActivity {
 
     CardView profileInfoCardView;
     ImageView profileImageView;
+    CardView mypage;
+    CardView inquiry;
+    CardView notice;
     TextView nickname;
 
     @Override
@@ -52,6 +55,9 @@ public class SettingActivity extends AppCompatActivity {
 
         // 카드뷰 프로필 사진 지정
         profileImageView = findViewById(R.id.tv_profile);
+        mypage = findViewById(R.id.myPage);
+        notice = findViewById(R.id.notice);
+        inquiry = findViewById(R.id.inquiry);
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
         Glide.with(SettingActivity.this)
@@ -69,6 +75,27 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showLogoutDialog();
+            }
+        });
+        mypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, MyPage.class);
+                startActivity(intent);
+            }
+        });
+        notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, Notice.class);
+                startActivity(intent);
+            }
+        });
+        inquiry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:010-9564-3580"));
+                startActivity(intent);
             }
         });
         // FAB ICON
