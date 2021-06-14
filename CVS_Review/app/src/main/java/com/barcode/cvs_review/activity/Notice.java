@@ -15,6 +15,8 @@ public class Notice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
+
+        getSupportActionBar().setTitle("설정");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

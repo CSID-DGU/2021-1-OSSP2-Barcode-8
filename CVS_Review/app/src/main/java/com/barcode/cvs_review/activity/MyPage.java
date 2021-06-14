@@ -61,6 +61,8 @@ public class MyPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
 
+        getSupportActionBar().setTitle("설정");
+
         Intent intent = getIntent();
         mRecyclerView = findViewById(R.id.mycomment_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
