@@ -120,6 +120,7 @@ public class ProductSpecActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),InsertReview.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("PRODUCT_NAME",PRODUCT_NAME);
+                intent.putExtra("BARCODE", BARCODE);
                 startActivityForResult(intent, 101);
             default:
                 return super.onOptionsItemSelected(item);
