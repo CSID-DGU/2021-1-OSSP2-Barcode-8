@@ -12,7 +12,7 @@ COVID-19시대를 겪으면서 우리 사회에 '집콕'과 '혼술'이 새로�
 
 ### 스크린샷
 
-<div display="block">
+<div display="block" style="overflow:scroll">
     <img width="200" src="https://user-images.githubusercontent.com/13748138/118665377-39576500-b82d-11eb-96fd-87f9ed59b94d.png">
     <img width="200" src="https://user-images.githubusercontent.com/13748138/122599850-f1d12c80-d0a9-11eb-97d0-1d8057de6d66.png">
     <img width="200" src="https://user-images.githubusercontent.com/13748138/118665404-3f4d4600-b82d-11eb-941a-36c2f2606e14.png">
@@ -26,11 +26,9 @@ COVID-19시대를 겪으면서 우리 사회에 '집콕'과 '혼술'이 새로�
 
 ### 영상
 
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/1yLMYEP__5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5OsS-53eLKo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 
 ### 라이선스
 
