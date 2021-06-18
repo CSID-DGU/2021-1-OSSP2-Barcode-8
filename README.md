@@ -16,18 +16,20 @@ COVID-19시대를 겪으면서 우리 사회에 '집콕'과 '혼술'이 새로�
     <img width="200" src="https://user-images.githubusercontent.com/13748138/118665377-39576500-b82d-11eb-96fd-87f9ed59b94d.png">
     <img width="200" src="https://user-images.githubusercontent.com/13748138/122599850-f1d12c80-d0a9-11eb-97d0-1d8057de6d66.png">
     <img width="200" src="https://user-images.githubusercontent.com/13748138/118665404-3f4d4600-b82d-11eb-941a-36c2f2606e14.png">
-<img width="200" src="https://user-images.githubusercontent.com/13748138/122599504-6fe10380-d0a9-11eb-8912-23ac0e19b7b7.jpg">
-<img width="200" src="https://user-images.githubusercontent.com/13748138/122599488-6c4d7c80-d0a9-11eb-9d39-1ef6c8a390bb.jpg">
-<img width="200" src="https://user-images.githubusercontent.com/13748138/122599496-6e174000-d0a9-11eb-9e9a-f40343557bd5.jpg">
-<img width="200" src="https://user-images.githubusercontent.com/13748138/122599912-08778380-d0aa-11eb-87cb-34c5f7102bde.png">
-<img width="200" src="https://user-images.githubusercontent.com/13748138/122599920-0ad9dd80-d0aa-11eb-8fa7-7835024041bf.png">
-  </div>
+    <img width="200" src="https://user-images.githubusercontent.com/13748138/122599504-6fe10380-d0a9-11eb-8912-23ac0e19b7b7.jpg">
+    <img width="200" src="https://user-images.githubusercontent.com/13748138/122599488-6c4d7c80-d0a9-11eb-9d39-1ef6c8a390bb.jpg">
+    <img width="200" src="https://user-images.githubusercontent.com/13748138/122599496-6e174000-d0a9-11eb-9e9a-f40343557bd5.jpg">
+    <img width="200" src="https://user-images.githubusercontent.com/13748138/122599912-08778380-d0aa-11eb-87cb-34c5f7102bde.png">
+    <img width="200" src="https://user-images.githubusercontent.com/13748138/122599920-0ad9dd80-d0aa-11eb-8fa7-7835024041bf.png">
+</div>
 
 ### 영상
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1yLMYEP__5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://user-images.githubusercontent.com/13748138/122601107-c64f4180-d0ab-11eb-8d92-a3b391c348c4.mp4
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5OsS-53eLKo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+https://user-images.githubusercontent.com/13748138/122601129-cbac8c00-d0ab-11eb-9fe3-aef5e24d7882.mp4
+
 
 ### 라이선스
 
