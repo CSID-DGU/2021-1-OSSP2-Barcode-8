@@ -89,8 +89,8 @@ public class ProductSpecActivity extends AppCompatActivity {
 
         GetData task = new GetData();
         task.execute("http://" + IP_ADDRESS + "/getjson_reviewList.php", BARCODE);
-        PRODUCT_NAME = CustomPreferenceManager.getString(getApplicationContext(),"spec_product_name");
-        PRODUCT_IMAGE = CustomPreferenceManager.getString(getApplicationContext(),"spec_product_image");
+        //PRODUCT_NAME = CustomPreferenceManager.getString(getApplicationContext(),"spec_product_name");
+        //PRODUCT_IMAGE = CustomPreferenceManager.getString(getApplicationContext(),"spec_product_image");
         //AVE_GRADE = mArrayList.get(0).getAVE_GRADE();
         product_name.setText(PRODUCT_NAME);
         if(AVE_GRADE.equals("null")) {
