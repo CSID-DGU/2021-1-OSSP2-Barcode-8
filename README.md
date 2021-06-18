@@ -25,11 +25,8 @@ COVID-19시대를 겪으면서 우리 사회에 '집콕'과 '혼술'이 새로�
 
 ### 영상
 
-https://user-images.githubusercontent.com/13748138/122601107-c64f4180-d0ab-11eb-8d92-a3b391c348c4.mp4
-
-
-https://user-images.githubusercontent.com/13748138/122601129-cbac8c00-d0ab-11eb-9fe3-aef5e24d7882.mp4
-
+* [상품 바코드 스캔 후 리뷰 작성](https://www.youtube.com/watch?v=1yLMYEP__5Y)
+* [상품 검색](https://www.youtube.com/watch?v=5OsS-53eLKo)
 
 ### 라이선스
 
