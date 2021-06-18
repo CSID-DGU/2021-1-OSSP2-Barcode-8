@@ -8,17 +8,28 @@
 
 COVID-19시대를 겪으면서 우리 사회에 '집콕'과 '혼술'이 새로운 트렌드로 자리 잡았다. 이를 뒷받침하듯이 대한민국에서 가장 유명한 편의점 3사 (CU, GS, 세븐일레븐) 브랜드 공식 모바일 어플리케이션의 이용, 설치자 수가 전년 대비 모두 상승했다. 그러나 우리 팀이 주목한 부분은 편의점 소비가 증가한 것에 비해, 편의점에 존재하는 수 많은 PB (Private Brand) 상품들에 대한 정보가 부족해 소비자들이 좋은 선택을 할 수 있는 경우가 그리 많지 않다는 점이다.
 
-
-
 따라서, 8조 Barcode 팀은 **'편의점 PB 상품들을 평가할 수 있는 모바일 어플리케이션'** 을 개발하여 소비자들의 합리적인 소비 및 기업 차원에서 더욱 질 좋은 PB 상품을 개발할 수 있도록 하는 Win-Win 전략을 취하려 한다.
 
 ### 스크린샷
 
 <div display="block">
     <img width="200" src="https://user-images.githubusercontent.com/13748138/118665377-39576500-b82d-11eb-96fd-87f9ed59b94d.png">
-    <img width="200" src="https://user-images.githubusercontent.com/13748138/118665381-3bb9bf00-b82d-11eb-987d-a66a188848d7.png">
+    <img width="200" src="https://user-images.githubusercontent.com/13748138/122599850-f1d12c80-d0a9-11eb-97d0-1d8057de6d66.png">
     <img width="200" src="https://user-images.githubusercontent.com/13748138/118665404-3f4d4600-b82d-11eb-941a-36c2f2606e14.png">
+<img width="200" src="https://user-images.githubusercontent.com/13748138/122599506-71123080-d0a9-11eb-80ec-f2b8f4e16c28.jpg">
+<img width="200" src="https://user-images.githubusercontent.com/13748138/122599504-6fe10380-d0a9-11eb-8912-23ac0e19b7b7.jpg">
+<img width="200" src="https://user-images.githubusercontent.com/13748138/122599488-6c4d7c80-d0a9-11eb-9d39-1ef6c8a390bb.jpg">
+<img width="200" src="https://user-images.githubusercontent.com/13748138/122599496-6e174000-d0a9-11eb-9e9a-f40343557bd5.jpg">
+<img width="200" src="https://user-images.githubusercontent.com/13748138/122599912-08778380-d0aa-11eb-87cb-34c5f7102bde.png">
+<img width="200" src="https://user-images.githubusercontent.com/13748138/122599920-0ad9dd80-d0aa-11eb-8fa7-7835024041bf.png">
   </div>
+
+### 영상
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1yLMYEP__5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5OsS-53eLKo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ### 라이선스
