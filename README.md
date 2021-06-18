@@ -16,7 +16,6 @@ COVID-19시대를 겪으면서 우리 사회에 '집콕'과 '혼술'이 새로�
     <img width="200" src="https://user-images.githubusercontent.com/13748138/118665377-39576500-b82d-11eb-96fd-87f9ed59b94d.png">
     <img width="200" src="https://user-images.githubusercontent.com/13748138/122599850-f1d12c80-d0a9-11eb-97d0-1d8057de6d66.png">
     <img width="200" src="https://user-images.githubusercontent.com/13748138/118665404-3f4d4600-b82d-11eb-941a-36c2f2606e14.png">
-<img width="200" src="https://user-images.githubusercontent.com/13748138/122599506-71123080-d0a9-11eb-80ec-f2b8f4e16c28.jpg">
 <img width="200" src="https://user-images.githubusercontent.com/13748138/122599504-6fe10380-d0a9-11eb-8912-23ac0e19b7b7.jpg">
 <img width="200" src="https://user-images.githubusercontent.com/13748138/122599488-6c4d7c80-d0a9-11eb-9d39-1ef6c8a390bb.jpg">
 <img width="200" src="https://user-images.githubusercontent.com/13748138/122599496-6e174000-d0a9-11eb-9e9a-f40343557bd5.jpg">
